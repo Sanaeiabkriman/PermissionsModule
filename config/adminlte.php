@@ -129,12 +129,7 @@ return [
             'url'  => 'users/admin',
             'icon' => 'user',
         ],
-        [
-            'text' => 'Profile',
-            'url'  => 'permission/admin/settings',
-            'icon' => 'user',
-        ],
-        
+            
     ],
 
     /*

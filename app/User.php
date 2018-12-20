@@ -20,7 +20,7 @@ class User extends Authenticatable
     ];
 
     public function role_users(){
-        return $this->belongsToMany('Modules\Permission\Entities\Role','user_roles', 'role_id','user_id');
+        return $this->belongsToMany('Modules\Permission\Entities\Role','user_roles', 'user_id','role_id');
     }
 
    

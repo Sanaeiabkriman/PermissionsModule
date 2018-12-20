@@ -37,8 +37,8 @@ Route::prefix('role')->group(function(){
 });
 Route::prefix('users')->group(function(){ 
     Route::get('admin','UsersController@index');
-    Route::post('create','RoleController@create');
-    Route::post('delete/{id}','RoleController@destroy');
+    Route::post('create','UsersController@create');
+    Route::post('delete/{id}','UsersController@destroy');
     Route::get('edit/{id}','UsersController@edit');
     Route::post('update/{id}','RoleController@update');
 });
