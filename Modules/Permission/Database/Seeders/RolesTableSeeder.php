@@ -4,8 +4,9 @@ namespace Modules\Permission\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
-class PermissionDatabaseSeeder extends Seeder
+class RolesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +15,8 @@ class PermissionDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-
-        // $this->call(PermissionsTableSeeder::class);
+        DB::table('categorie_roles')->insert([
+            'nom' => 'Visiteur',
+        ]);
     }
 }

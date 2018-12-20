@@ -121,12 +121,12 @@ return [
         ],
         [
             'text' => 'Roles',
-            'url'  => 'permission/admin/roles',
+            'url'  => 'role/admin/role',
             'icon' => 'user',
         ],
         [
-            'text' => 'Permission Roles',
-            'url'  => 'permission/admin/permirole',
+            'text' => 'Users',
+            'url'  => 'users/admin',
             'icon' => 'user',
         ],
         [

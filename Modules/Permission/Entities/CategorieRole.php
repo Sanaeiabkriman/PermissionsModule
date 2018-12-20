@@ -9,6 +9,6 @@ class CategorieRole extends Model
     protected $fillable = [];
 
     public function role(){
-        return $this->belongsToMany('App\Role', 'article_tag', 'article_id', 'tag_id');
+        return $this->hasMany('Modules\Permission\Entities\Role');
     }
 }

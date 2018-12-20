@@ -28,3 +28,17 @@ Route::prefix('catrole')->group(function(){
     Route::get('edit/{id}','CategorieroleController@edit');
     Route::post('update/{id}','CategorieroleController@update');
 });
+Route::prefix('role')->group(function(){ 
+    Route::get('admin/role','RoleController@index');
+    Route::post('create','RoleController@create');
+    Route::post('delete/{id}','RoleController@destroy');
+    Route::get('edit/{id}','RoleController@edit');
+    Route::post('update/{id}','RoleController@update');
+});
+Route::prefix('users')->group(function(){ 
+    Route::get('admin','UsersController@index');
+    Route::post('create','RoleController@create');
+    Route::post('delete/{id}','RoleController@destroy');
+    Route::get('edit/{id}','UsersController@edit');
+    Route::post('update/{id}','RoleController@update');
+});

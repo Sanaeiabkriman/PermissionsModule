@@ -19,6 +19,11 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    public function role_users(){
+        return $this->belongsToMany('Modules\Permission\Entities\Role','user_roles', 'role_id','user_id');
+    }
+
+   
     /**
      * The attributes that should be hidden for arrays.
      *
