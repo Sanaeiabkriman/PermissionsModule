@@ -7,6 +7,10 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Permission\Entities\Permission;
 use Modules\Permission\Http\Requests\PermissionValidation;
+// use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+
 class PermiController extends Controller
 {
     /**
@@ -15,7 +19,7 @@ class PermiController extends Controller
      */
     public function index()
     {
-        $donnee =Permission::all();
+        $donnee = Permission::all();
         return view('permission::permission.index', compact('donnee'));
     }
 
@@ -25,7 +29,7 @@ class PermiController extends Controller
      */
     public function create(PermissionValidation $request)
     {
-        $donnee= new Permission;
+        $donnee = new Permission;
         $donnee->permission=$request->permission;
         $donnee->save();
         return redirect('permission/admin/permis');
@@ -35,9 +39,10 @@ class PermiController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit($id)
+    public function edit(Permission $permission, $id)
     {
-        $modif=Permission::find($id);
+        $modif = Permission::find($id);
+        
         return view('permission::permission.edit',compact('modif'));
     }
 
@@ -48,7 +53,7 @@ class PermiController extends Controller
      */
     public function update(PermissionValidation $request, $id)
     {
-        $modif=Permission::find($id);
+        $modif = Permission::find($id);
         $modif->permission=$request->permission;
         $modif->save();
         return redirect('permission/admin/permis');
@@ -60,7 +65,7 @@ class PermiController extends Controller
      */
     public function destroy($id)
     {
-        $del=Permission::find($id);
+        $del = Permission::find($id);
         $del->delete();
         return redirect('permission/admin/permis');
 

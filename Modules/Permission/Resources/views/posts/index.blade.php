@@ -12,16 +12,17 @@
     </ul>
 </div>
 @endif
+
 <h4 style="font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;" class="bg-navy">
-    Création d'une nouvelle permission
+    Création d'un post
 </h4>
 
-<form action="/permission/create" method="post" enctype="multipart/form-data" role="form">
+<form action="/posts/create" method="post" enctype="multipart/form-data" role="form">
     @csrf
     <div class="box">
         <div class="form-group">
-            <label>Nom de la permission</label>
-            <input type="text" name="permission" value="{{old('permission')}}" class="form-control">
+            <label>Nom du post</label>
+            <input type="text" name="text" value="{{old('text')}}" class="form-control">
         </div>
 
         <button type="submit" class="btn btn-default btn-block btn-sm">Ajouter</button>
@@ -34,27 +35,31 @@
     <div class="box-body">
         {{-- Titre de page --}}
         <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-            Permissions
+            Posts
         </h4>
 
         <table class="table table-condensed">
             <tbody>
-                @foreach ($donnee as $item)
+                @foreach ($post as $item)
                 <tr>
                     <th style="width: 10px">{{$item->id}}</th>
-                    <th>{{$item->permission}}</th>
-                    @can('update')
+                    <th>{{$item->text}}</th>
+                    <th>{{$item->user_id}}</th>
+                    <th>{{$item->user->name}}</th>
+                    @can('update',$item)
                     <th style="width: 40px">
-                        <a href="/permission/edit/{{$item->id}}" type="submit" class="btn btn-default">Edit</a>
+                        <a href="/posts/edit/{{$item->id}}" type="submit" class="btn btn-default">Edit</a>
                     </th>
                     @endcan
-                
+                    
+                    @can('delete',$item)
                     <th style="width: 40px">
-                        <form action="/permission/delete/{{$item->id}}" method="POST">
+                        <form action="/posts/delete/{{$item->id}}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-default">Del</button>
                         </form>
                     </th>
+                    @endcan
                 </tr>
                 @endforeach
             </tbody>
@@ -62,3 +67,4 @@
     </div>
 </div>
 @stop
+

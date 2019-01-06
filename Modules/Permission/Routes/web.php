@@ -40,5 +40,12 @@ Route::prefix('users')->group(function(){
     Route::post('create','UsersController@create');
     Route::post('delete/{id}','UsersController@destroy');
     Route::get('edit/{id}','UsersController@edit');
-    Route::post('update/{id}','RoleController@update');
+    Route::post('update/{id}','UsersController@update');
+});
+Route::prefix('posts')->group(function(){ 
+    Route::get('admin','PostController@index');
+    Route::post('create','PostController@create');
+    Route::post('delete/{id}','PostController@destroy');
+    Route::get('edit/{id}','PostController@edit');
+    Route::post('update/{id}','PostController@update');
 });

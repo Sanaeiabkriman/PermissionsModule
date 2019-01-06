@@ -129,6 +129,11 @@ return [
             'url'  => 'users/admin',
             'icon' => 'user',
         ],
+        [
+            'text' => 'Posts',
+            'url'  => 'posts/admin',
+            'icon' => 'user',
+        ],
             
     ],
 

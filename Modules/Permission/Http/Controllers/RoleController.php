@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Permission\Entities\Role;
 use Modules\Permission\Entities\CategorieRole;
 use Modules\Permission\Entities\Permission;
-
+use App\User;
 class RoleController extends Controller
 {
     /**
@@ -17,10 +17,11 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $user=User::all();
         $permission=Permission::all();
         $catrole=CategorieRole::all();
         $role=Role::with('permission','cat')->get(); 
-        return view('permission::role.index', compact('role','catrole','permission'));
+        return view('permission::role.index', compact('role','catrole','permission','user'));
     }
 
     /**

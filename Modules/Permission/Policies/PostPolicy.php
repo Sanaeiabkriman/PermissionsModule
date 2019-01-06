@@ -3,22 +3,19 @@
 namespace Modules\Permission\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-
+use App\User;
+use Modules\Permission\Entities\Post;
+use Auth;
 
 class PostPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        //
+      
     }
-  
+
     /**
      * Determine whether the user can view the permission.
      *
@@ -26,9 +23,17 @@ class PostPolicy
      * @param  \App\Permission  $permission
      * @return mixed
      */
-    public function can_view(User $user, Post $post)
+    public function view(User $user, Post $post)
     {
-        return true;
+        $a=Auth::user()->role_users()->with('permission')->get();
+        $b=$a->first()->permission->pluck('permission');
+
+        if ($b->contains('Can_read')) {
+            return true;
+        }
+        else{
+            return $user->id === $post->user_id;
+        }
     }
 
     /**
@@ -37,9 +42,17 @@ class PostPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function can_create(User $user)
-    {
-        return true;
+    public function create(User $user)
+    { 
+        $a=Auth::user()->role_users()->with('permission')->get();
+        $b=$a->first()->permission->pluck('permission');
+        
+        if ($b->contains('Can_create')) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -49,9 +62,18 @@ class PostPolicy
      * @param  \App\Permission  $permission
      * @return mixed
      */
-    public function can_update(User $user, Permission $permission)
+    public function update(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        $a=Auth::user()->role_users()->with('permission')->get();
+        $b=$a->first()->permission->pluck('permission');
+
+        if ($b->contains('Can_update')) {
+            return true;
+        }
+        else{
+            return $user->id === $post->user_id;
+        }
+
     }
 
     /**
@@ -61,8 +83,16 @@ class PostPolicy
      * @param  \App\Permission  $permission
      * @return mixed
      */
-    public function can_delete(User $user, Permission $permission)
+    public function delete(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        $a=Auth::user()->role_users()->with('permission')->get();
+        $b=$a->first()->permission->pluck('permission');
+        
+        if ($b->contains('Can_delete')) {
+            return true;
+        }
+        else{
+            return $user->id === $post->user_id;
+        }
     }
 }

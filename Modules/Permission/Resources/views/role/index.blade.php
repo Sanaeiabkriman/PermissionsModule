@@ -1,4 +1,4 @@
- @extends('adminlte::page')
+@extends('adminlte::page')
 @section('title', 'AdminLTE')
 
 @section('content')
@@ -23,26 +23,38 @@
 
             <div class="tab-pane" id="show">
                 <h4>Affichage des roles créés</h4>
-                @foreach ($role as $item)
-                <div class="post">
-                    <p>{{$item->id}}</p>
-                    <div class="user-block">
-                        Categorie: <span>{{$item->cat->nom}}</span>
-                        <br>
-                        Permission:
-                        @foreach ($item->permission as $permi)
-                        {{$permi->permission}},
+
+                <table class="table table-condensed">
+                    <tbody>
+                        @foreach ($role as $item)
+                        <tr>
+                            <th style="width: 10px"> {{$item->id}}</th>
+                            <th style="width: 10px">{{$item->cat->nom}}</th>
+
+                            <th style="width: 10px"> 
+                            @foreach ($item->permission as $permi)
+                                {{$permi->permission}},
+                                @endforeach
+                            </th>
+                            <th style="width: 80px">
+                                <a href="/role/edit/{{$item->id}}" type="submit" class="btn btn-block btn-default btn-xs">Editer</a>
+                            </th>
+                            <th style="width: 80px">
+                                <form action="/role/delete/{{$item->id}}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-block btn-default btn-xs">supprimer</button>
+                                </form>
+                            </th>
+                        </tr>
                         @endforeach
-                    </div>
-                    <a href="/role/edit/{{$item->id}}" type="submit" class="btn btn-block btn-default btn-xs">Editer</a>
-                    <form action="/role/delete/{{$item->id}}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-block btn-default btn-xs">supprimer</button>
-                    </form>
-                </div>
+                    </tbody>
+
+                </table>
                 <!-- /.post -->
-                @endforeach
+              
             </div>
+
+
 
             {{--
             -------------------------------------------------------------------------------------------------------

@@ -33,7 +33,7 @@ class UsersController extends Controller
     {   $user=new User;
         $user->name=$request->name;
         $user->email=$request->email;
-        $user->password= Hash::make($request['password']);
+        $user->password=Hash::make($request['password']);
         $user->save();
         foreach($request->role as $item){
             $user->role_users()->attach($item); 
@@ -64,8 +64,9 @@ class UsersController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, User $user)
     {
+        // $this->authorize('update', $user);
         $modif=User::find($id);
         $permission=Permission::all();
         $catrole=CategorieRole::all();
