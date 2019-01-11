@@ -18,7 +18,7 @@
 
 <form action="/permission/update/{{$modif->id}}" method="post" enctype="multipart/form-data" role="form">
     @csrf
-    <div class="box">
+    <div class="box" style="padding:8px">
         <div class="form-group">
             <label>Nom de la permission</label>
             <input type="text" name="permission" value="{{old('permission',$modif->permission)}}" class="form-control">

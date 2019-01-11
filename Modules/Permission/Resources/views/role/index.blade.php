@@ -12,97 +12,52 @@
     </ul>
 </div>
 @endif
+{{-------------------------Affichage des roles-------------------------}}
 
-<div class="col-md-9">
-    <div class="nav-tabs-custom">
-        <ul class="nav nav-tabs p-2">
-            <li class="p-1 px-2"><a href="#show" data-toggle="tab" aria-expanded="false">Roles</a></li>
-            <li class="p-1 px-2"><a href="#create" data-toggle="tab" aria-expanded="false"> Ajouter un role </a></li>
-        </ul>
-        <div class="tab-content">
-
-            <div class="tab-pane" id="show">
-                <h4>Affichage des roles créés</h4>
-
-                <table class="table table-condensed">
-                    <tbody>
-                        @foreach ($role as $item)
-                        <tr>
-                            <th style="width: 10px"> {{$item->id}}</th>
-                            <th style="width: 10px">{{$item->cat->nom}}</th>
-
-                            <th style="width: 10px"> 
-                            @foreach ($item->permission as $permi)
-                                {{$permi->permission}},
-                                @endforeach
-                            </th>
-                            <th style="width: 80px">
-                                <a href="/role/edit/{{$item->id}}" type="submit" class="btn btn-block btn-default btn-xs">Editer</a>
-                            </th>
-                            <th style="width: 80px">
-                                <form action="/role/delete/{{$item->id}}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-block btn-default btn-xs">supprimer</button>
-                                </form>
-                            </th>
-                        </tr>
+<div class="col-md-12">
+        <h4 class="bg-navy p-2 text-center">Affichage des roles créés</h4>
+    <div class="tab-pane bg-light" id="show">
+        <table class="table table-condensed">
+            <tbody>
+                <tr class="row m-auto">
+                    <th class="col-1">Id</th>
+                    <th class="col-3">Nom</th>
+                    <th class="col-3">Categorie</th>
+                    <th class="col-3">Permissions</th>
+                </tr>
+                @foreach ($role as $item)
+                <tr class="row m-auto">
+                    <td class="col-1"> {{$item->id}}</td>
+                    <td class="col-3">{{$item->nom}}</td>
+                    @if ($item->categorie)
+                    <td class="col-3">{{$item->categorie->nom}}</td>
+                    @endif
+                    <td class="col-3">
+                        @foreach ($item->permission as $permi)
+                        {{$permi->permission}}
+                        @if (count($item->permission) != $count++)
+                        ,
+                        @endif
                         @endforeach
-                    </tbody>
-
-                </table>
-                <!-- /.post -->
-              
-            </div>
-
-
-
-            {{--
-            -------------------------------------------------------------------------------------------------------
-            --}}
-
-            <!-- /.tab-pane -->
-
-            <div class="tab-pane" id="create">
-                <h4>Création d'un role</h4>
-
-                <form class="form-horizontal" action="/role/create" method="post" enctype="multipart/form-data" role="form">
-                    @csrf
-                    <div class="form-group">
-                        <label for="inputName" class="col-sm-2 control-label">Choisir la categorie de role</label>
-                        <div class="form-group">
-                            <select name="cat" value="{{old('cat')}}">
-                                @foreach ($catrole as $item)
-                                <option value="{{$item->id}}">{{$item->nom}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputName" class="col-sm-2 control-label">Choisir la permission</label>
-                        <div class="form-group">
-                            @foreach ($permission as $item)
-                            <input type="checkbox" name="permi[]" value="{{$item->id}}"> {{$item->permission}}
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-light">Submit</button>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            <!-- /.tab-pane -->
-
-
-        </div>
-        <!-- /.tab-content -->
+                        <?php $count=1 ?>
+                    </td>
+                    <td class="col-1">
+                        <a href="/role/edit/{{$item->id}}" type="submit" role="button" class="btn btn-light btn-md btn-block">Editer</a>
+                    </td>
+                    <td class="col-1">
+                        <form action="/role/delete/{{$item->id}}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-light bg-navy">supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-    <!-- /.nav-tabs-custom -->
-
+    <form action="/role/create" class="form-group">
+        <button class="btn btn-default btn-md btn-block">Créer un nouveau role</button>
+    </form>
 </div>
 
 @stop

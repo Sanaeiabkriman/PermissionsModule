@@ -1,0 +1,7 @@
+L'implémentation de ce module requiert:
+
+- la création d'une table pivot 'YOUR_TABLE_roles' qui fera le lien entre la table Role de ce module et la table 'users' de votre plateforme.
+- L'ajout dans le document AuthServiceProvider (App\Providers\AuthServiceProvider), de la ligne de code dans la fonction "protected $policies" ( 'App\MODEL' => 'Modules\Permission\Policies\PostPolicy',
+) qui permet de faire le lien entre le model choisi et la policy.
+- Les Seeders crées dans le module doivent être ajoutés dans le fichier DatabaseSeeeder de la platforme.
+- Ce module requiert l'instalation de bootstrap 4 dans Admin-Lte.

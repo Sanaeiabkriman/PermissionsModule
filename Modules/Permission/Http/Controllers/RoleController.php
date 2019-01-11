@@ -9,6 +9,8 @@ use Modules\Permission\Entities\Role;
 use Modules\Permission\Entities\CategorieRole;
 use Modules\Permission\Entities\Permission;
 use App\User;
+use Modules\Permission\Http\Requests\RoleValidation;
+
 class RoleController extends Controller
 {
     /**
@@ -17,27 +19,36 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $user=User::all();
-        $permission=Permission::all();
-        $catrole=CategorieRole::all();
-        $role=Role::with('permission','cat')->get(); 
-        return view('permission::role.index', compact('role','catrole','permission','user'));
+        $role=Role::with('permission','categorie')->get(); 
+        $count=1;
+        return view('permission::role.index', compact('role','count'));
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create(Request $request)
+    
+    public function create()
+    {
+        $user=User::all();
+        $permission=Permission::all();
+        $categorie=CategorieRole::all();
+        $role=Role::with('permission','categorie')->get(); 
+        return view('permission::role.create', compact('role','categorie','permission','user'));
+         
+    }
+    public function store(RoleValidation $request)
     {
         $role= new Role;
-        $role->categorie_role_id=$request->cat;
+        $role->categorie_role_id=$request->categorie;
+        $role->nom=$request->nom;
         $role->save();
         foreach($request->permi as $item){
             $role->permission()->attach($item); 
         }
         $role->save();
-        return redirect('role/admin/role');
+        return redirect('role/admin');
     }
     /**
      * Show the form for editing the specified resource.
@@ -47,9 +58,9 @@ class RoleController extends Controller
     {
         $modif=Role::find($id);
         $permission=Permission::all();
-        $catrole=CategorieRole::all();
-        $role=Role::with('permission','cat')->get(); 
-        return view('permission::role.edit', compact('modif','catrole','permission'));
+        $categorie=CategorieRole::all();
+        $role=Role::with('permission','categorie')->get(); 
+        return view('permission::role.edit', compact('modif','categorie','permission'));
     }
 
     /**
@@ -57,14 +68,15 @@ class RoleController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleValidation $request, $id)
     {
         $modif=Role::find($id);
-        $modif->categorie_role_id=$request->cat;
+        $modif->categorie_role_id=$request->categorie;
+        $modif->nom=$request->nom;
         $modif->save();
         $modif->permission()->sync($request->permi);
         $modif->save();
-        return redirect('role/admin/role');
+        return redirect('role/admin');
 
     }
 
@@ -77,7 +89,7 @@ class RoleController extends Controller
         $del=Role::find($id);
         $del->permission()->detach();
         $del->delete();
-        return redirect('role/admin/role');
+        return redirect('role/admin');
 
     }
 }

@@ -33,4 +33,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // public function isAdmin(){
+    //     $this->role_users()->first()->cat->nom === 'Admin';
+    // }
 }

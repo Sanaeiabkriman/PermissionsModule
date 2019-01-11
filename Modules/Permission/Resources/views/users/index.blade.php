@@ -32,7 +32,7 @@
 
                         <div class="form-group">
                                 @foreach ($role as $item)
-                                <input type="checkbox" name="role[]" value="{{$item->id}}"> {{$item->id}}
+                                <input type="checkbox" name="role[]" value="{{$item->id}}"> {{$item->nom}}
                                 @endforeach
                             </div>
                     </div>

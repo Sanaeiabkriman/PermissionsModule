@@ -14,23 +14,24 @@
 Route::prefix('permission')->group(function() {
     Route::get('/', 'PermissionController@index');
     // Vers les permissions
-    Route::get('admin/permis','PermiController@index');
+    Route::get('admin','PermiController@index');
     Route::post('create','PermiController@create');
     Route::post('delete/{id}','PermiController@destroy');
     Route::get('edit/{id}','PermiController@edit');
     Route::post('update/{id}','PermiController@update');
     // Vers les categories role
 });
-Route::prefix('catrole')->group(function(){ 
-    Route::get('admin/categorierole','CategorieroleController@index');
+Route::prefix('categorie')->group(function(){ 
+    Route::get('admin','CategorieroleController@index');
     Route::post('create','CategorieroleController@create');
     Route::post('delete/{id}','CategorieroleController@destroy');
     Route::get('edit/{id}','CategorieroleController@edit');
     Route::post('update/{id}','CategorieroleController@update');
 });
 Route::prefix('role')->group(function(){ 
-    Route::get('admin/role','RoleController@index');
-    Route::post('create','RoleController@create');
+    Route::get('admin','RoleController@index');
+    Route::post('store','RoleController@store');
+    Route::get('create','RoleController@create');
     Route::post('delete/{id}','RoleController@destroy');
     Route::get('edit/{id}','RoleController@edit');
     Route::post('update/{id}','RoleController@update');

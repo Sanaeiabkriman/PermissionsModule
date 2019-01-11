@@ -19,13 +19,13 @@ class CategoriesTableSeeder extends Seeder
             'nom' => 'Start-up',
         ]);
         DB::table('categorie_roles')->insert([
-            'nom' => 'Incubés',
+            'nom' => 'Incubé',
         ]);
         DB::table('categorie_roles')->insert([
             'nom' => 'Student',
         ]);
         DB::table('categorie_roles')->insert([
-            'nom' => 'Admin',
+            'nom' => 'Employé',
         ]);
         DB::table('categorie_roles')->insert([
             'nom' => 'Visiteur',

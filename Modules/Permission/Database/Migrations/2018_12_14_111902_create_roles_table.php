@@ -18,6 +18,8 @@ class CreateRolesTable extends Migration
             $table->unsignedInteger('categorie_role_id');
             $table->foreign('categorie_role_id')->references('id')->on('categorie_roles');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

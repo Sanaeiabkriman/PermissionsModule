@@ -16,7 +16,7 @@ class CategorieroleController extends Controller
     public function index()
     {
         $donnee=CategorieRole::all();
-        return view('permission::categorieRole.index', compact('donnee'));
+        return view('permission::categorie.index', compact('donnee'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategorieroleController extends Controller
         $donnee= new CategorieRole;
         $donnee->nom=$request->nom;
         $donnee->save();
-        return redirect ('catrole/admin/categorierole');
+        return redirect ('categorie/admin');
     }
     /**
      * Show the form for editing the specified resource.
@@ -37,7 +37,7 @@ class CategorieroleController extends Controller
     public function edit($id)
     {
         $modif=CategorieRole::find($id);
-        return view('permission::categorieRole.edit',compact('modif'));
+        return view('permission::categorie.edit',compact('modif'));
     }
 
     /**
@@ -50,7 +50,7 @@ class CategorieroleController extends Controller
         $donnee=CategorieRole::find($id);
         $donnee->nom=$request->nom;
         $donnee->save();
-        return redirect('catrole/admin/categorierole');
+        return redirect('categorie/admin');
     }
 
     /**
@@ -61,6 +61,6 @@ class CategorieroleController extends Controller
     {
         $del=CategorieRole::find($id);
         $del->delete();
-        return redirect('catrole/admin/categorierole');
+        return redirect('categorie/admin');
     }
 }

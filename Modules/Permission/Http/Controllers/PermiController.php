@@ -32,7 +32,7 @@ class PermiController extends Controller
         $donnee = new Permission;
         $donnee->permission=$request->permission;
         $donnee->save();
-        return redirect('permission/admin/permis');
+        return redirect('permission/admin');
     }
 
     /**
@@ -56,7 +56,7 @@ class PermiController extends Controller
         $modif = Permission::find($id);
         $modif->permission=$request->permission;
         $modif->save();
-        return redirect('permission/admin/permis');
+        return redirect('permission/admin');
     }
 
     /**
@@ -67,7 +67,7 @@ class PermiController extends Controller
     {
         $del = Permission::find($id);
         $del->delete();
-        return redirect('permission/admin/permis');
+        return redirect('permission/admin');
 
     }
 }

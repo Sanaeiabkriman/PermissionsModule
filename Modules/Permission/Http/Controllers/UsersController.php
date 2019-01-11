@@ -20,8 +20,8 @@ class UsersController extends Controller
     {
         $users=User::all(); 
         $permission=Permission::all();
-        $catrole=CategorieRole::all();
-        $role=Role::with('permission','cat')->get();     
+        $cat=CategorieRole::all();
+        $role=Role::with('permission','categorie')->get();     
         return view('permission::users.index', compact('users','role', 'catrole','permission'));
     }
 
@@ -70,7 +70,7 @@ class UsersController extends Controller
         $modif=User::find($id);
         $permission=Permission::all();
         $catrole=CategorieRole::all();
-        $role=Role::with('permission','cat')->get();
+        $role=Role::with('permission','categorie')->get();
         // dd($modif->role_users[0]);
         return view('permission::users.edit', compact('modif','role','catrole','permission'));
     }

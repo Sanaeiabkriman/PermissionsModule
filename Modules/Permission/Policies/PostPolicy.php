@@ -11,10 +11,6 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    public function __construct()
-    {
-      
-    }
 
     /**
      * Determine whether the user can view the permission.

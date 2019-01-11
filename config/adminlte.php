@@ -111,17 +111,17 @@ return [
         'ACCOUNT SETTINGS',
         [
             'text' => 'Permissions',
-            'url'  => 'permission/admin/permis',
+            'url'  => 'permission/admin',
             'icon' => 'user',
         ],
         [
-            'text' => 'Categorie Role',
-            'url'  => 'catrole/admin/categorierole',
+            'text' => 'Categories',
+            'url'  => 'categorie/admin',
             'icon' => 'user',
         ],
         [
             'text' => 'Roles',
-            'url'  => 'role/admin/role',
+            'url'  => 'role/admin',
             'icon' => 'user',
         ],
         [

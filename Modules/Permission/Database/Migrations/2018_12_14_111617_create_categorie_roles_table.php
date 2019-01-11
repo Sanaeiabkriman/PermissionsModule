@@ -17,6 +17,8 @@ class CreateCategorieRolesTable extends Migration
             $table->increments('id');
             $table->text('nom');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
