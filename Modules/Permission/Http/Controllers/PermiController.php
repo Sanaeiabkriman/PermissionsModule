@@ -42,7 +42,6 @@ class PermiController extends Controller
     public function edit(Permission $permission, $id)
     {
         $modif = Permission::find($id);
-        
         return view('permission::permission.edit',compact('modif'));
     }
 

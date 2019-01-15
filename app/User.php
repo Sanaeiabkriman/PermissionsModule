@@ -22,6 +22,9 @@ class User extends Authenticatable
     public function role_users(){
         return $this->belongsToMany('Modules\Permission\Entities\Role','user_roles', 'user_id','role_id');
     }
+    public function user_projet(){
+        return $this->belongsToMany('Modules\Factory\Entities\Projet','projet_user', 'user_id','projet_id');
+    }
 
 
    

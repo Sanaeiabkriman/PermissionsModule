@@ -109,30 +109,70 @@ return [
 
     'menu' => [
         'ACCOUNT SETTINGS',
+        [   'text'    => 'Permissions',
+            'icon'    => 'share',
+            'submenu' => [
+
+                ['text' => 'Permissions',
+                'url'  => 'permission/admin',
+                'icon' => 'user',
+            ],
+            [
+                'text' => 'Categories',
+                'url'  => 'categorie/admin',
+                'icon' => 'user',
+            ],
+            [
+                'text' => 'Roles',
+                'url'  => 'role/admin',
+                'icon' => 'user',
+            ],
+            [
+                'text' => 'Users',
+                'url'  => 'users/admin',
+                'icon' => 'user',
+            ],
+            [
+                'text' => 'Posts',
+                'url'  => 'posts/admin',
+                'icon' => 'user',
+            ],
+        ]
+    ],
         [
-            'text' => 'Permissions',
-            'url'  => 'permission/admin',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Categories',
-            'url'  => 'categorie/admin',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Roles',
-            'url'  => 'role/admin',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Users',
-            'url'  => 'users/admin',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Posts',
-            'url'  => 'posts/admin',
-            'icon' => 'user',
+            'text'    => 'Factory',
+            'icon'    => 'share',
+            'submenu' => [
+                [
+                    'text' => 'Statut',
+                    'url'  => '/statut/admin',
+                ],
+                [
+                    'text' => 'Clients',
+                    'url'  => '/client/admin',
+                ],
+                [
+                    'text' => 'Projets',
+                    'url'  => '/projet/admin',
+                ],
+                [
+                    'text' => 'Clients',
+                    'url'  => '/homeclients',
+                ],
+                [
+                    'text' => 'Roles',
+                    'url'  => '/role',
+                ],
+                [
+                    'text' => 'Users',
+                    'url'  => '/user',
+                ],
+                [
+                    'text' => 'Promotion',
+                    'url'  => '/homepromo',
+                ],
+
+            ],
         ],
             
     ],
