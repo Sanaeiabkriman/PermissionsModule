@@ -31,7 +31,8 @@ Route::prefix('client')->group(function(){
 });
 Route::prefix('projet')->group(function(){ 
     Route::get('admin','ProjetController@index');
-    Route::post('create','ProjetController@create');
+    Route::get('create','ProjetController@create');
+    Route::post('store','ProjetController@store');
     Route::post('delete/{id}','ProjetController@destroy');
     Route::get('edit/{id}','ProjetController@edit');
     Route::post('update/{id}','ProjetController@update');

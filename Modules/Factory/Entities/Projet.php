@@ -17,7 +17,10 @@ class Projet extends Model
     public function client(){
         return $this->belongsTo('Modules\Factory\Entities\Client','client_id','id'); 
     }
-    public function projet_users(){
-        return $this->belongsToMany('App\User');
+    public function users(){
+        return $this->belongsTo('App\User');
+    }
+    public function collaborateur(){
+        return $this->belongsToMany('App\User', 'user_projet','projet_id', 'user_id');   
     }
 }

@@ -155,22 +155,6 @@ return [
                     'text' => 'Projets',
                     'url'  => '/projet/admin',
                 ],
-                [
-                    'text' => 'Clients',
-                    'url'  => '/homeclients',
-                ],
-                [
-                    'text' => 'Roles',
-                    'url'  => '/role',
-                ],
-                [
-                    'text' => 'Users',
-                    'url'  => '/user',
-                ],
-                [
-                    'text' => 'Promotion',
-                    'url'  => '/homepromo',
-                ],
 
             ],
         ],
