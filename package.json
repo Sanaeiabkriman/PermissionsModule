@@ -18,5 +18,14 @@
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
         "vue": "^2.5.17"
+    },
+    "dependencies": {
+        "ajv": "^6.7.0",
+        "bootstrap-datepicker": "^1.8.0",
+        "datepicker": "0.0.0",
+        "flatpickr": "^4.5.2",
+        "imagemin": "^6.1.0",
+        "jquery-ui": "^1.12.1",
+        "js-datepicker": "^4.0.10"
     }
 }

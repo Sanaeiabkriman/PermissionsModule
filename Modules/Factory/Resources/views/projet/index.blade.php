@@ -31,18 +31,22 @@
                     <th class="col-2">Statut</th>
                     <th class="col-2">Responsables</th>
                 </tr>
-                @foreach ($donnee as $item)   
+                @foreach ($donnee as $item)
                 <tr class="row m-auto">
                     <td class="col-1">{{$item->id}}</td>
                     <td class="col-2">{{$item->nom}}</td>
                     <td class="col-2">{{$item->date}}</td>
                     <td class="col-2">{{$item->statut->nom}}</td>
-                    <td class="col-2">{{$item->client->nom}}</td> 
-                    <td>
-                        @foreach ($item->collaborateur as $item)                        
-                        {{$item->name}},
+                    <td class="col-2">{{$item->client->nom}}</td>
+
+                    <td class="col-1">
+                        @foreach ($item->collaborateur as $collaborateurs)
+                        {{$collaborateurs->name}},
                         @endforeach
-                    </td>                                       
+                    </td>
+                    <td class="col-1">
+                        <a href="/projet/edit/{{$item->id}}" type="submit" class="btn btn-light">Editer</a>
+                    </td>
                     <td class="col-1">
                         <form action="/projet/delete/{{$item->id}}" method="POST">
                             @csrf

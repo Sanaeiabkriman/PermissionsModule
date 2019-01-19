@@ -42,7 +42,7 @@ class ProjetController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(ProjetValidation $request)
     {
         $projet= new Projet;
         $projet->nom=$request->nom;
@@ -72,13 +72,14 @@ class ProjetController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        $donnee=Projet::all();
+        $modif=Projet::find($id);
+        $project = Projet::where('id', $id)->get();
         $collaborateurs=User::all();
         $clients=Client::all();
         $statut=Statut::all();
-        return view('factory::projet.edit',  compact('donnee','collaborateurs','clients','statut'));
+        return view('factory::projet.edit',  compact('modif','collaborateurs','clients','statut'));
     }
 
     /**
@@ -86,17 +87,17 @@ class ProjetController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjetValidation $request, $id)
     {
-        $projet=Projet::find($id);
-        $projet->nom=$request->nom;
-        $projet->description=$request->description;
-        $projet->date=$request->date;
-        $projet->user_id=Auth::id();
-        $projet->client_id=$request->clients;
-        $projet->statut_id=$request->statut;
-        $projet->save();
-        $projet->collaborateur()->sync($request->collaborateurs); 
+        $modif=Projet::find($id);
+        $modif->nom=$request->nom;
+        $modif->description=$request->description;
+        $modif->date=$request->date;
+        $modif->user_id=Auth::id();
+        $modif->client_id=$request->clients;
+        $modif->statut_id=$request->statut;
+        $modif->save();
+        $modif->collaborateur()->sync($request->collaborateurs); 
         return redirect('projet/admin');
 
     }
