@@ -1,0 +1,5 @@
+L'implémentation de ce module requiert:
+
+- Le lien dans le model User avec la table projet.
+- Les Seeders crées dans le module doivent être ajoutés dans le fichier DatabaseSeeeder de la platforme.
+- Ce module requiert l'instalation de bootstrap 4 dans Admin-Lte.

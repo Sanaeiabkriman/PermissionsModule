@@ -23,5 +23,6 @@ class StatutsTableSeeder extends Seeder
         ]);
         DB::table('statuts')->insert([
             'nom' => 'Fait',
-        ]);    }
+        ]);    
+    }
 }

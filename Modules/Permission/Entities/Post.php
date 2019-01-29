@@ -1,5 +1,7 @@
 <?php
-
+/*-----------------------------------------------
+Fichier non integrable
+-----------------------------------------------*/
 namespace Modules\Permission\Entities;
 
 use Illuminate\Database\Eloquent\Model;

@@ -1,0 +1,5 @@
+L'implémentation de ce module requiert:
+
+- Les Seeders crées dans le module doivent être ajoutés dans le fichier DatabaseSeeeder de la platforme.
+- Ce module requiert l'instalation de bootstrap 4 dans Admin-Lte.
+- Il requiert également l'installation de ImageIntervention.

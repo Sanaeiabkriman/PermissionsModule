@@ -158,6 +158,52 @@ return [
 
             ],
         ],
+        [
+            'text'    => 'Presse',
+            'icon'    => 'share',
+            'submenu' => [
+                [
+                    'text' => 'Articles',
+                    'url'  => "presse/admin",
+                ],
+
+            ],
+        ],
+        [
+            'text'    => 'Agenda',
+            'icon'    => 'share',
+            'submenu' => [
+                [
+                    'text' => 'Calendrier',
+                    'url'  => "agenda/admin",
+                ],
+
+            ],
+        ],
+        [
+            'text'    => 'Coding-school',
+            'icon'    => 'share',
+            'submenu' => [
+                [
+                    'text' => 'Matieres',
+                    'url'  => "matiere/admin",
+                ],
+                [
+                    'text' => 'Student',
+                    'url'  => "promo/admin",
+                ],
+                [
+                    'text' => 'Promo',
+                    'url'  => "promo/admin",
+                ],
+                [
+                    'text' => 'Exos',
+                    'url'  => "promo/admin",
+                ],
+
+
+            ],
+        ],
             
     ],
 

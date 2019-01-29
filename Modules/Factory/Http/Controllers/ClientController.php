@@ -17,7 +17,8 @@ class ClientController extends Controller
     public function index()
     {
         $donnee = Client::all();
-        return view('factory::client.index', compact('donnee'));       }
+        return view('factory::client.index', compact('donnee'));       
+    }
 
     /**
      * Show the form for creating a new resource.

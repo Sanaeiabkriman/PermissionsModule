@@ -9,6 +9,9 @@ use Modules\Factory\Database\Seeders\StatutsTableSeeder;
 use Modules\Factory\Database\Seeders\ClientsTableSeeder;
 use Modules\Factory\Database\Seeders\ProjetsTableSeeder;
 use Modules\Factory\Database\Seeders\UserProjetTableSeeder;
+use Modules\Presse\Database\Seeders\PresseDatabaseSeeder;
+use Modules\Coding\Database\Seeders\MatiereTableSeeder;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -30,5 +33,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionRolesTableSeeder::class);
         $this->call(ProjetsTableSeeder::class);
         $this->call(UserProjetTableSeeder::class);
+        $this->call(PresseDatabaseSeeder::class);
+        $this->call(MatiereTableSeeder::class);
+
     }
 }

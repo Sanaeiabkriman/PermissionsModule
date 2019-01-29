@@ -1,5 +1,8 @@
 <?php
-
+/*-----------------------------------------------
+DOCUMENT A SUPPRIMER AVANT L'INTEGRATION DU MODULE
+-----------------------------------------------*/
+ 
 namespace Modules\Permission\Http\Controllers;
 
 use Illuminate\Http\Request;

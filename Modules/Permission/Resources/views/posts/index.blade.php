@@ -1,3 +1,14 @@
+{{-- /*-----------------------------------------------
+* @package Module Permissions
+* @author  Sanae
+* @copyright   Copyright (c) 2018 - MolenGeek (https://molengeek.com/)
+* @license http://opensource.org/licenses/MIT  MIT License
+* @since   Version 1.0.0
+* @TODO (??)
+* @param type
+* @param2 type
+* @return TypeObjet
+-----------------------------------------------*/ --}}
 @extends('adminlte::page')
 
 @section('title', 'AdminLTE')
