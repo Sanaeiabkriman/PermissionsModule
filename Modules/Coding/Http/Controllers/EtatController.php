@@ -5,10 +5,10 @@ namespace Modules\Coding\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\Coding\Entities\Matiere;
-use Modules\Coding\Http\Requests\MatiereValidation;
+use Modules\Coding\Entities\Etat;
+use Modules\Coding\Http\Requests\EtatValidation;
 
-class MatiereController extends Controller
+class EtatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,20 +16,20 @@ class MatiereController extends Controller
      */
     public function index()
     {
-        $donnee=Matiere::all();
-        return view('coding::matiere.index', compact('donnee'));
+        $donnee=Etat::all();
+        return view('coding::etats.index', compact('donnee'));
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create(MatiereValidation $request)
+    public function create(EtatValidation $request)
     {
-        $donnee= new Matiere;
-        $donnee->nom=$request->nom;
-        $donnee->save();
-        return redirect ('matiere/admin');
+        $donnees=new Etat;
+        $donnees->nom =$request->nom;
+        $donnees->save();
+        return redirect('etats/admin');
     }
 
     /**
@@ -56,8 +56,8 @@ class MatiereController extends Controller
      */
     public function edit($id)
     {
-        $modif=Matiere::find($id);
-        return view('coding::matiere.edit', compact('modif'));
+        $modif=Etat::find($id);
+        return view('coding::etats.edit', compact('modif'));
     }
 
     /**
@@ -65,13 +65,12 @@ class MatiereController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(MatiereValidation $request,$id)
+    public function update(EtatValidation $request, $id)
     {
-        $modif=Matiere::find($id);
+        $modif=Etat::find($id);
         $modif->nom=$request->nom;
         $modif->save();
-        return redirect('matiere/admin');
-
+        return redirect('etats/admin');
     }
 
     /**
@@ -80,8 +79,8 @@ class MatiereController extends Controller
      */
     public function destroy($id)
     {
-        $del=Matiere::find($id);
+        $del=Etat::find($id);
         $del->delete();
-        return redirect('matiere/admin');
+        return redirect ('etats/admin');
     }
 }

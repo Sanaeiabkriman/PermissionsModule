@@ -189,8 +189,8 @@ return [
                     'url'  => "matiere/admin",
                 ],
                 [
-                    'text' => 'Student',
-                    'url'  => "promo/admin",
+                    'text' => 'Etats',
+                    'url'  => "etats/admin",
                 ],
                 [
                     'text' => 'Promo',

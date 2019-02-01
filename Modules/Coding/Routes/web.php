@@ -25,3 +25,10 @@ Route::prefix('matiere')->group(function() {
     Route::get('edit/{id}','MatiereController@edit');
     Route::post('update/{id}','MatiereController@update');
 });
+Route::prefix('etats')->group(function() {
+    Route::get('/admin', 'EtatController@index');
+    Route::post('create','EtatController@create');
+    Route::post('delete/{id}','EtatController@destroy');
+    Route::get('edit/{id}','EtatController@edit');
+    Route::post('update/{id}','EtatController@update');
+});
