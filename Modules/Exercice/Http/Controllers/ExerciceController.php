@@ -1,13 +1,12 @@
 <?php
 
-namespace Modules\Coding\Http\Controllers;
+namespace Modules\Exercice\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\Coding\Entities\Coding;
 
-class CodingController extends Controller
+class ExerciceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class CodingController extends Controller
      */
     public function index()
     {
-        $donnee=Matiere::all();
-        return view('coding::matiere.index', compact('donnee'));
+        return view('exercice::index');
     }
 
     /**
@@ -25,7 +23,7 @@ class CodingController extends Controller
      */
     public function create()
     {
-        return view('coding::create');
+        return view('exercice::create');
     }
 
     /**
@@ -43,7 +41,7 @@ class CodingController extends Controller
      */
     public function show()
     {
-        return view('coding::show');
+        return view('exercice::show');
     }
 
     /**
@@ -52,7 +50,7 @@ class CodingController extends Controller
      */
     public function edit()
     {
-        return view('coding::edit');
+        return view('exercice::edit');
     }
 
     /**

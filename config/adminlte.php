@@ -193,14 +193,21 @@ return [
                     'url'  => "etats/admin",
                 ],
                 [
-                    'text' => 'Promo',
-                    'url'  => "promo/admin",
+                    'text' => 'coding',
+                    'url'  => "coding/admin",
                 ],
                 [
-                    'text' => 'Exos',
-                    'url'  => "promo/admin",
+                    'text' => 'Test',
+                    'url'  => "test/admin",
                 ],
-
+                [
+                    'text' => 'Students',
+                    'url'  => "students/admin",
+                ],
+                [
+                    'text' => 'Exoss',
+                    'url'  => "exos/admin",
+                ],
 
             ],
         ],

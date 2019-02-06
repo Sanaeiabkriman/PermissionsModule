@@ -32,3 +32,10 @@ Route::prefix('etats')->group(function() {
     Route::get('edit/{id}','EtatController@edit');
     Route::post('update/{id}','EtatController@update');
 });
+Route::prefix('coding')->group(function() {
+    Route::get('/admin', 'CodingController@index');
+    Route::post('create','CodingController@create');
+    Route::post('delete/{id}','CodingController@destroy');
+    Route::get('edit/{id}','CodingController@edit');
+    Route::post('update/{id}','CodingController@update');
+});

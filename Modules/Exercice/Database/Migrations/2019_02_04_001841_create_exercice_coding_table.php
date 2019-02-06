@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCoachsTable extends Migration
+class CreateExerciceCodingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateCoachsTable extends Migration
      */
     public function up()
     {
-        Schema::create('coachs', function (Blueprint $table) {
+        Schema::create('exercice_coding', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->unsignedInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->unsignedInteger('exercice_id');
+            $table->foreign('exercice_id')->references('id')->on('exercices');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateCoachsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coachs');
+        Schema::dropIfExists('exercice_coding');
     }
 }
