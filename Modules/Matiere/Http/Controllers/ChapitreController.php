@@ -16,35 +16,66 @@ class ChapitreController extends Controller
      */
     public function index()
     {
-        $chapitres=Chapitre::all();
-        $this->recurcive();
-        return view('matiere::test.index', compact('chapitres'));
+       // $chapitres=Chapitre::all();
+        $mavar=$this->recurcive();
+        // $mavar = $this->r;
+        return view('matiere::test.index', compact('mavar'));  
     }
-    
-    public function recurcive($id = NULL){
-        //-- on stoque les parents dont l'id est null dans $chapitre
-        $chapitres = Chapitre::where("parent",$id)->get();
-        // --si chapitres n'est pas vide, et donc s'il a des enfants
-        if($chapitres->isNotEmpty()){
-            // -- pour chaque chapitre qui a des enfants, 
-            foreach ($chapitres as $item) {
-                //  -- si son id n'est pas null et donc s'il a encore des enfants
-                if($id != NULL){
-                    // -- on 
-                    $this->c[$id]= array();
-                    array_push($this->c[$id],$item);
-                }else{
-                    $this->c ["null"] = array();
-                    array_push($this->c,$item);
-                }
-                
-                $this->recurcive($item->id);
-            }
-        } 
-        // return $array;
 
-        // return view('matiere::test.index', compact('chapitres'));
+    function recurcive($id = NULL){
+        $r ="";
+        $enfant = "";
+        $chapitres = Chapitre::where("parent",$id)->get();
+        foreach ($chapitres as $item) {
+            $r .= view('matiere::test.r', compact('item')); 
+            $enfant =$this->recurcive($item->id);
+            if ($enfant == ""){
+                $r .= view('matiere::test.liclose');  
+            }
+            if($enfant){
+                    $ul_open = view('matiere::test.ulopen');
+                    $ul_close = view('matiere::test.ulclose');
+                    $r .= $ul_open.$enfant.$ul_close;
+                }
+            }
+        return $r;
     }
+
+    function recurcivev($id = NULL){
+        $r ="";
+        $enfant = "";
+        $branch=array();
+        $chapitres = Chapitre::where("parent",$id)->get();
+        foreach ($chapitres as $item) {
+            //    $splited = explode ( '.' , $item->nom);
+            //    if(count($splited) >1){
+            //        for($i=0; $i<count($splited);$i++){
+            //            $this->r .="&nbsp;&nbsp;"; 
+            //         }
+            //     } //etape1
+            $r .= view('matiere::test.r', compact('item')); //"<li> <a href='".url("$item->id")."' >".$item->nom."</a>";//etape2
+            // $this->r .= $item->nom."<br>"; //etape1
+            $enfant =$this->recurcive($item->id);
+                if ($enfant == ""){
+                    $r .= view('matiere::test.liclose');  
+                    // $r .= $enfant;
+                    //$item['enfant']=$enfant;  
+                }
+                if($enfant){
+                    $ul_open = view('matiere::test.ulopen');
+                    $ul_close = view('matiere::test.ulclose');
+                    $r .= $ul_open.$enfant.$ul_close;
+                }
+                // $this->r .= "</ul> ";//etape 2
+                // $branch[] = $item;//etape 1
+                // $branch= $item;
+                // return view('matiere::test.li', compact('item'));   
+            }
+          
+        return $r;
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
