@@ -185,8 +185,8 @@ return [
             'icon'    => 'share',
             'submenu' => [
                 [
-                    'text' => 'Matieres',
-                    'url'  => "matiere/admin",
+                    'text' => 'Chapitres',
+                    'url'  => "chapitre/admin",
                 ],
                 [
                     'text' => 'Etats',

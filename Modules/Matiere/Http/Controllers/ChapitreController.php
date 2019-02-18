@@ -19,7 +19,7 @@ class ChapitreController extends Controller
        // $chapitres=Chapitre::all();
         $mavar=$this->recurcive();
         // $mavar = $this->r;
-        return view('matiere::test.index', compact('mavar'));  
+        return view('matiere::chapitres.index', compact('mavar'));  
     }
 
     function recurcive($id = NULL){
@@ -27,54 +27,19 @@ class ChapitreController extends Controller
         $enfant = "";
         $chapitres = Chapitre::where("parent",$id)->get();
         foreach ($chapitres as $item) {
-            $r .= view('matiere::test.r', compact('item')); 
+            $r .= view('matiere::chapitres.r', compact('item')); 
             $enfant =$this->recurcive($item->id);
             if ($enfant == ""){
-                $r .= view('matiere::test.liclose');  
+                $r .= view('matiere::chapitres.liclose', compact('item'));  
             }
             if($enfant){
-                    $ul_open = view('matiere::test.ulopen');
-                    $ul_close = view('matiere::test.ulclose');
+                    $ul_open = view('matiere::chapitres.ulopen',compact('item'));
+                    $ul_close = view('matiere::chapitres.ulclose',compact('item'));
                     $r .= $ul_open.$enfant.$ul_close;
                 }
             }
         return $r;
     }
-
-    function recurcivev($id = NULL){
-        $r ="";
-        $enfant = "";
-        $branch=array();
-        $chapitres = Chapitre::where("parent",$id)->get();
-        foreach ($chapitres as $item) {
-            //    $splited = explode ( '.' , $item->nom);
-            //    if(count($splited) >1){
-            //        for($i=0; $i<count($splited);$i++){
-            //            $this->r .="&nbsp;&nbsp;"; 
-            //         }
-            //     } //etape1
-            $r .= view('matiere::test.r', compact('item')); //"<li> <a href='".url("$item->id")."' >".$item->nom."</a>";//etape2
-            // $this->r .= $item->nom."<br>"; //etape1
-            $enfant =$this->recurcive($item->id);
-                if ($enfant == ""){
-                    $r .= view('matiere::test.liclose');  
-                    // $r .= $enfant;
-                    //$item['enfant']=$enfant;  
-                }
-                if($enfant){
-                    $ul_open = view('matiere::test.ulopen');
-                    $ul_close = view('matiere::test.ulclose');
-                    $r .= $ul_open.$enfant.$ul_close;
-                }
-                // $this->r .= "</ul> ";//etape 2
-                // $branch[] = $item;//etape 1
-                // $branch= $item;
-                // return view('matiere::test.li', compact('item'));   
-            }
-          
-        return $r;
-    }
-
 
 
     /**
@@ -99,9 +64,11 @@ class ChapitreController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function show($id)
     {
-        return view('matiere::show');
+        $mavar=Chapitre::find($id);
+        $mavar=$this->recurcive();
+        return view('matiere::chapitres.show', compact('mavar'));
     }
 
     /**

@@ -13,13 +13,13 @@
 </div>
 @endif
 
-<div class="box box-solid">
-    <div class="box-body">
-        <h4 class="text-center bg-light">
-        </h4>
+<div id="accordion">
+    <div class="card">
+
         <ul class="bg-light" >
             <?php echo $mavar ?>
         </ul>     
     </div>
 </div>
 @stop
+

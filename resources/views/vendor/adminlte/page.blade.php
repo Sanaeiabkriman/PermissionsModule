@@ -47,9 +47,9 @@
             </a>
 
             <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top py-0" role="navigation">
+            <nav class="navbar navbar-static-top py-0 row" role="navigation">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <a href="#" class="sidebar-toggle col-11" data-toggle="push-menu" role="button">
                     <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
                 </a>
             @endif

@@ -8,9 +8,9 @@ class Chapitre extends Model
 {
     protected $fillable = [];
 
-    // public static function chapParent(){
-    //     return $this->where("parent",$id)->get();
-    // }
+    public function ChapParent(){
+        return $this->where("parent",$id)->get();
+     }
 
 
 }

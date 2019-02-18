@@ -11,6 +11,17 @@
 |
 */
 
-Route::prefix('test')->group(function() {
+Route::prefix('chapitre')->group(function() {
     Route::get('/admin', 'ChapitreController@index');  
+    Route::get('show/{id}','ChapitreController@show');
+
 });
+
+Route::prefix('szf')->group(function() {
+    Route::get('/admin', 'CodingController@index');
+    Route::post('create','CodingController@create');
+    Route::post('delete/{id}','CodingController@destroy');
+    Route::get('edit/{id}','CodingController@edit');
+    Route::post('update/{id}','CodingController@update');
+});
+
