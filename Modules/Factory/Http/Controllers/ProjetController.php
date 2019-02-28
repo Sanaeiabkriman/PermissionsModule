@@ -108,6 +108,8 @@ class ProjetController extends Controller
         $modif->statut_id=$request->statut;
         $modif->save();
         $modif->collaborateur()->sync($request->collaborateurs); 
+        $modif->save();
+
         return redirect('projet/admin');
 
     }

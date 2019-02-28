@@ -19,6 +19,7 @@ class PresseController extends Controller
     public function index()
     {
         $donnee=Presse::all();
+        // dd($donnee);
         return view('presse::articles/index', compact('donnee'));
     }
 
@@ -110,6 +111,7 @@ class PresseController extends Controller
     public function destroy($id)
     {
         $del=Presse::find($id);
+        Storage::delete($del->image);
         $del->delete();
         return redirect('presse/admin');
 

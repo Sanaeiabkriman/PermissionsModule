@@ -55,7 +55,7 @@
             <div class="form-group col-md-4">
                 <h5 class="bg-light m-1 p-1">Entrer la date limite</h5>
                 <hr>
-                <input type="text" name="date" value="{{old('date',$modif->date))}}" placeholder="jj/mm/aaaa" class="form-control" id='datepicker' />
+                <input type="text" name="date" value="{{old('date',$modif->date)}}" placeholder="jj/mm/aaaa" class="form-control" id='datepicker'/>
 
             </div>
             <div class="form-group col-md-3">

@@ -188,13 +188,13 @@ return [
                     'text' => 'Chapitres',
                     'url'  => "chapitre/admin",
                 ],
+                // [
+                //     'text' => 'Etats',
+                //     'url'  => "etats/admin",
+                // ],
                 [
-                    'text' => 'Etats',
-                    'url'  => "etats/admin",
-                ],
-                [
-                    'text' => 'coding',
-                    'url'  => "coding/admin",
+                    'text' => 'cours',
+                    'url'  => "chapitre/show",
                 ],
                 [
                     'text' => 'Test',

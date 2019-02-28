@@ -176,7 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Spatie\GoogleCalendar\GoogleCalendarServiceProvider::class,
+        // Spatie\GoogleCalendar\GoogleCalendarServiceProvider::class,
     ],
 
     /*
@@ -226,7 +226,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'ImageIntervention'=> Intervention\Image\Facades\Image::class,
-        'GoogleCalendar' => Spatie\GoogleCalendar\GoogleCalendarFacade::class,
+        // 'GoogleCalendar' => Spatie\GoogleCalendar\GoogleCalendarFacade::class,
     ],
 
 ];

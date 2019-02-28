@@ -13,6 +13,9 @@ use Modules\Presse\Database\Seeders\PresseDatabaseSeeder;
 use Modules\Coding\Database\Seeders\MatiereTableSeeder;
 use Modules\Coding\Database\Seeders\EtatTableSeeder;
 use Modules\Matiere\Database\Seeders\ChapitreTableSeeder;
+use Modules\Matiere\Database\Seeders\TypesTableSeeder;
+use Modules\Matiere\Database\Seeders\ChapitreTypesTableSeeder;
+
 
 use Illuminate\Database\Seeder;
 
@@ -39,6 +42,8 @@ class DatabaseSeeder extends Seeder
         $this->call(MatiereTableSeeder::class);
         $this->call(EtatTableSeeder::class);
         $this->call(ChapitreTableSeeder::class);
+        $this->call(TypesTableSeeder::class);
+        $this->call(ChapitreTypesTableSeeder::class);
 
     }
 }

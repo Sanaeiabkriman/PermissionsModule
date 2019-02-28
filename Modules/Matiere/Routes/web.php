@@ -13,15 +13,11 @@
 
 Route::prefix('chapitre')->group(function() {
     Route::get('/admin', 'ChapitreController@index');  
-    Route::get('show/{id}','ChapitreController@show');
-
+    Route::get('/show','ChapitreController@show');
+    Route::get('/create','ChapitreController@create');
+    Route::post('/store','ChapitreController@store');
+    Route::get('/search/{id}','ChapitreController@search');
+    Route::post('delete/{id}','ChapitreController@destroy');
+    Route::get('edit/{id}','ChapitreController@edit');
+    Route::post('update/{id}','ChapitreController@update');
 });
-
-Route::prefix('szf')->group(function() {
-    Route::get('/admin', 'CodingController@index');
-    Route::post('create','CodingController@create');
-    Route::post('delete/{id}','CodingController@destroy');
-    Route::get('edit/{id}','CodingController@edit');
-    Route::post('update/{id}','CodingController@update');
-});
-

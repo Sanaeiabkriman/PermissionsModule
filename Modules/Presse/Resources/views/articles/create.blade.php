@@ -40,7 +40,7 @@
                 <input type="text" name="titre" value="{{old('titre')}}" placeholder="titre" class="form-control">
             </div>
             <div class="form-group col-md-4 m-2">
-                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" name="image" class="form-control-file">
             </div>
             <div class="form-group col-12 mb-0">
                 <button type="submit" class="btn btn-block btn-light btn-sm border border-disabled">Submit</button>

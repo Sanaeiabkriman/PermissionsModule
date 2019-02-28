@@ -18,48 +18,171 @@ class ChapitreTableSeeder extends Seeder
         Model::unguard();
 
         DB::table('chapitres')->insert([
-            'nom' => '1',
+            'nom' => 'HTML',
             'parent' => null,
+             
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
+
         ]);
         DB::table('chapitres')->insert([
-            'nom' => '1.1',
+            'nom' => 'Les balises',
             'parent' => '1',
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
+
+
         ]);
         DB::table('chapitres')->insert([
-            'nom' => '1.2',
+            'nom' => 'les elements',
             'parent' => '1',
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
+
+
         ]);
         DB::table('chapitres')->insert([
-            'nom' => '1.1.1',
+            'nom' => 'les headings',
             'parent' => '2',
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
+
+
         ]);
         DB::table('chapitres')->insert([
-            'nom' => '2',
+            'nom' => 'CSS',
             'parent' => null,
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
+
         ]);
         DB::table('chapitres')->insert([
-            'nom' => '2.1',
+            'nom' => 'les links',
             'parent' => '5',
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
+
+
         ]);
         DB::table('chapitres')->insert([
-            'nom' => '3',
+            'nom' => 'Javascript',
             'parent' => null,
+             
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
+
+
         ]);
         DB::table('chapitres')->insert([
-            'nom' => '3.1',
+            'nom' => 'les variables',
             'parent' => '7',
+             
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
+
+
         ]);
         DB::table('chapitres')->insert([
-            'nom' => '3.1.1',
+            'nom' => 'les constantes',
             'parent' => '8',
+             
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
+
+
         ]);
         DB::table('chapitres')->insert([
-            'nom' => '3.1.1.1',
+            'nom' => 'les aojdoajd',
             'parent' => '9',
+             
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
+
+
         ]);
         DB::table('chapitres')->insert([
-            'nom' => '4',
+            'nom' => 'Laravel',
             'parent' => null,
+            'image'=>'15513508416Kmi99aGsSVS9fjXoTTwEHYfLPaV8Eu7Z2CTiYmI.jpeg',
+            'description'=>"Et surtout MySQL, qui est un Système de Gestion de Bases de Données Relationnelles (abrégé SGBDR), c'est-à-dire un logiciel qui permet de gérer des bases de données, et donc de gérer de grosses quantités d'informations. Il utilise pour cela le langage SQL. Il s'agit d'un des SGBDR les plus connus et les plus utilisés (YouTube et Wordpress utilisent MySQL, par exemple).",
+            'competences'=>'À la fin de ce cours, vous serez capable de Créer une base de données
+                Créer et modifier des tables
+                Insérer, modifier, supprimer et sélectionner des données dans la base
+                Réaliser une requête portant sur plusieurs tables avec les jointures
+                Accélérer les requêtes avec les index
+                Identifier une ligne de manière unique et garantir la cohérence des données avec les clés',
+            'prerequis'=>'aucun !',
         ]);
+    
     }
 }

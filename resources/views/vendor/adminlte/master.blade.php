@@ -29,9 +29,9 @@
         <link rel="stylesheet" href="//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css">
         @endif
         
-        @yield('adminlte_css')
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-        
+        @yield('adminlte_css')
+    
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -57,6 +57,7 @@
 @if(config('adminlte.plugins.datatables'))
 <!-- DataTables with bootstrap 3 renderer -->
 <script src="//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 @endif
 
 @if(config('adminlte.plugins.chartjs'))
@@ -64,7 +65,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
 @endif
 
-{{-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> --}}
 @yield('adminlte_js')
 <script src="../../js/app.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

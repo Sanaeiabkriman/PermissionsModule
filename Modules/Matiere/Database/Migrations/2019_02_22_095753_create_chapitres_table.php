@@ -17,6 +17,11 @@ class CreateChapitresTable extends Migration
             $table->increments('id');
             $table->text('nom');
             $table->text('parent')->nullable();
+            $table->text('enfant')->nullable();
+            $table->text('image');
+            $table->text('description');
+            $table->text('competences');
+            $table->text('prerequis');
             $table->timestamps();
         });
     }

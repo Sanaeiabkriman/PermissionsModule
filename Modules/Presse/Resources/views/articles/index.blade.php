@@ -16,17 +16,15 @@
 <div class="row">
     @foreach ($donnee as $item)
     <div class="col-md-3">
-        <!-- Widget: user widget style 1 -->
-        <div class="box box-widget widget-user-2">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-navy">
+
+        <div class="box">
+            <div class="bg-light">
                 <div class="widget-user-image">
-                    <img class="img-circle" src="{{Storage::url("public/images/thumbnails/".$item->image)}}" alt="User Avatar">
+                    <img src={{Storage::url("public/images/thumbnails/".$item->image)}}>
                 </div>
-                <!-- /.widget-user-image -->
 
                 <h6 class="m-0 auto">
-                    <a class="widget-user-username text-white m-auto" href="{{$item->lien}}">{{$item->titre}}</a>
+                    <a class="widget-user-username text-navy m-auto" href="{{$item->lien}}">{{$item->titre}}</a>
                 </h6>
                 <h5 class="widget-user-desc">{{$item->media}}</h5>
                 <h3>{{$item->date}}</h3>

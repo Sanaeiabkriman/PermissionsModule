@@ -10,7 +10,11 @@ class Chapitre extends Model
 
     public function ChapParent(){
         return $this->where("parent",$id)->get();
-     }
+    }
+
+    public function type(){
+        return $this->belongsToMany('Modules\Matiere\Entities\Chapitre', 'chapitre_type', 'chapitre_id', 'type_id');
+    }
 
 
 }
