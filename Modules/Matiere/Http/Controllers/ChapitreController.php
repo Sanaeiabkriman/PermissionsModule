@@ -35,9 +35,9 @@ class ChapitreController extends Controller
                 $r .= view('matiere::chapitres.liclose', compact('item'));  
             }
             if($enfant){
-                    $ul_open = view('matiere::chapitres.ulopen',compact('item'));
-                    $ul_close = view('matiere::chapitres.ulclose',compact('item'));
-                    $r .= $ul_open.$enfant.$ul_close;
+                $ul_open = view('matiere::chapitres.ulopen',compact('item'));
+                $ul_close = view('matiere::chapitres.ulclose',compact('item'));
+                $r .= $ul_open.$enfant.$ul_close;
                 }
             }
         return $r;
@@ -96,7 +96,7 @@ class ChapitreController extends Controller
      */
     public function show()
     {
-        $mavar=Chapitre::paginate(4);
+        $mavar=Chapitre::paginate(6);
         $type=Type::all();
         // $mavar=$this->recurcive();
         return view('matiere::chapitres.show', compact('mavar','type'));
@@ -112,7 +112,6 @@ class ChapitreController extends Controller
         $chaps=chapitre::all();
         $type=Type::all();
         return view('matiere::chapitres.edit',  compact('chapitre','type', 'chaps'));
-
     }
 
     /**
@@ -130,7 +129,7 @@ class ChapitreController extends Controller
             $img=$request->image;
             $renom=time().$img->hashName();
             $img->store('/public/images/original/');
-            $resized=ImageIntervention::make($img)->resize(90,90);
+            $resized=ImageIntervention::make($img)->resize(125,125);
             $resized->save();
             Storage::put('/public/images/thumbnails/'.$renom, $resized);
             $chapitre->image=$renom;
@@ -148,7 +147,6 @@ class ChapitreController extends Controller
         $chapitre->type()->sync($request->type);
         $chapitre->save();
         return redirect('chapitre/show');
-
     }
 
     /**
@@ -161,16 +159,22 @@ class ChapitreController extends Controller
         Storage::delete($del->image);
         $del->type()->detach();
         $del->delete();
-        return redirect('chapitre/admin');
+        return redirect('chapitre/show');
     }
 
     public function search($id)
     {
         $types=Type::all();
         $type = Type::find($id);
-        $typechapitre= $type->chapitre()->paginate(4);    
+        $typechapitre= $type->chapitre()->paginate(6);    
         return view ('matiere::chapitres.search',compact('typechapitre','types'));
+    }
 
-
+    public function cours($id)
+    {
+        $cours = Chapitre::find($id);
+        $courstest=$this->recurcive($id);
+        $count=1;
+        return view ('matiere::chapitres.cours',compact('cours', 'courstest','count'));
     }
 }

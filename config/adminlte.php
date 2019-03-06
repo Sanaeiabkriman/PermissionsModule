@@ -197,8 +197,8 @@ return [
                     'url'  => "chapitre/show",
                 ],
                 [
-                    'text' => 'Test',
-                    'url'  => "test/admin",
+                    'text' => 'codings',
+                    'url'  => "coding/admin",
                 ],
                 [
                     'text' => 'Students',

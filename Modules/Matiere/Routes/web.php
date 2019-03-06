@@ -20,4 +20,16 @@ Route::prefix('chapitre')->group(function() {
     Route::post('delete/{id}','ChapitreController@destroy');
     Route::get('edit/{id}','ChapitreController@edit');
     Route::post('update/{id}','ChapitreController@update');
+    Route::get('cours/{id}', 'ChapitreController@cours');
+});
+
+Route::prefix('coding')->group(function() {
+    Route::get('/admin', 'CodingController@index');  
+    Route::get('/show','CodingController@show');
+    Route::get('/create','CodingController@create');
+    Route::post('/store','CodingController@store');
+    Route::get('/search/{id}','CodingController@search');
+    Route::post('delete/{id}','CodingController@destroy');
+    Route::get('edit/{id}','CodingController@edit');
+    Route::post('update/{id}','CodingController@update');
 });

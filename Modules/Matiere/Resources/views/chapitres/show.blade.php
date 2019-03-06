@@ -13,10 +13,10 @@
 </div>
 @endif
 <li class="dropdown list-unstyled text-center m-2">
-    <a href="#" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">dvedvfef</a>
+    <a href="#" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Filtrer</a>
     <ul class="dropdown-menu" role="menu">
         @foreach ($type as $item)
-        <li> 
+        <li>
             <a href="/chapitre/search/{{$item->id}}">
                 {{$item->nom}}
             </a>
@@ -25,28 +25,32 @@
     </ul>
 </li>
 
+
 @foreach ($mavar as $item)
-<div class="tab-pane bg-white container" id="create">
-    <div class="row">
-        <div class="col-md-12 col-sm-6 col-xs-12">
-            
-            <img src={{Storage::url("public/images/thumbnails/".$item->image)}} alt="">
-            <div class="info-box">
-                    <div class="info-box-content">
-                    <span class="info-box-number">{{$item->nom}}</span>
-                    <span class="progress-text">{{$item->description}}</span>
-               
+    <div class=" bg-white container">
+        <div class="row">
+            <div class="col-md-12 col-sm-6 col-xs-12 row m-2">
+                <div class="col- p-0">
+                    <img src={{Storage::url("public/images/thumbnails/".$item->image)}} alt="">
+                </div>
+                <div class="bg-gray color-palette col-8">
+                    <div class="m-2 p-2">
+                        <a class="info-box-number" href="/chapitre/cours/{{$item->id}}">{{$item->nom}}</a>
+                        <span class="progress-text">{{$item->description}}</span>
+                    </div>
+                </div>
+                <div class="container col-2 row">
+                    <div class="col-6">
+                        <a href="/chapitre/edit/{{$item->id}}" type="submit" class="btn btn-light">Editer</a>
+                    </div>
+                    <form action="/chapitre/delete/{{$item->id}}" method="POST" class="m-1 col-6">
+                        @csrf
+                        <button type="submit" class="btn btn-light border">Supprimer</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-
-    <form class="form-horizontal" action="/chapitre/edit/{{$item->id}}" method="get" enctype="multipart/form-data" role="form">
-        @csrf
-        <div class="text-center">
-            <button type="submit" class="btn btn-default">Edit</button>
-        </div>
-    </form>
-</div>
 @endforeach
 <br>
 <div class="text-center">

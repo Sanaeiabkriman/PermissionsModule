@@ -8,13 +8,12 @@ class Chapitre extends Model
 {
     protected $fillable = [];
 
-    public function ChapParent(){
-        return $this->where("parent",$id)->get();
+    public function ChapParent($id){
+        return $this->where($this->parent,$id);
     }
 
     public function type(){
-        return $this->belongsToMany('Modules\Matiere\Entities\Chapitre', 'chapitre_type', 'chapitre_id', 'type_id');
+        return $this->belongsToMany('Modules\Matiere\Entities\Type', 'chapitre_type', 'chapitre_id', 'type_id');
     }
-
 
 }

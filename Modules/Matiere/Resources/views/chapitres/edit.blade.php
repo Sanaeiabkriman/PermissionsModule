@@ -50,9 +50,8 @@
                 <div class="form-group col-md-3">
                     <h5 class="bg-light m-1  p-1">Entrer la description du chapitre</h5>
                     <hr>
-                    <input type="text" name="description" value="{{old('description',$chapitre->description)}}" placeholder="description" class="form-control">
+                    <textarea type="text" cols="30" rows="10" name="description" value="{{old('description')}}" placeholder="description" class="form-control">{{$chapitre->description}}</textarea>
                 </div>
-    
                 <div class="form-group col-md-3">
                     <h5 class="bg-light m-1 p-1">Entrer les prerequis</h5>
                     <hr>

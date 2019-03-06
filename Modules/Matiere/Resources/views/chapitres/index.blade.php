@@ -13,9 +13,9 @@
 </div>
 @endif
 
-<div id="accordion text-center">
-    <div class="card p-3 text-center">
-        <div class="bg-light container">
+<div id="accordion">
+    <div class="card p-3">
+        <div class="bg-light container  text-center">
             <?php echo $mavar ?>
         </div> 
             
