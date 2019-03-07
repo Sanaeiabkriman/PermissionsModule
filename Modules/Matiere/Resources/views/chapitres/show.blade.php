@@ -27,8 +27,8 @@
 
 
 @foreach ($mavar as $item)
-    <div class=" bg-white container">
-        <div class="row">
+    <div class=" bg-white container" id="v-for-object"  class="demo" >
+        <div class="row" v-for="value in object">
             <div class="col-md-12 col-sm-6 col-xs-12 row m-2">
                 <div class="col- p-0">
                     <img src={{Storage::url("public/images/thumbnails/".$item->image)}} alt="">
@@ -52,6 +52,7 @@
         </div>
     </div>
 @endforeach
+<div id="app"></div>
 <br>
 <div class="text-center">
     {{ $mavar->links() }}
