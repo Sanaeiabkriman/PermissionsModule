@@ -12,11 +12,17 @@
     </ul>
 </div>
 @endif
-
+<div id="app">
+    <div class="container">
+        <App></App>
+    </div>
+</div>
+{{-- 
 <div id="accordion">
     <div class="card p-3">
         <div class="bg-light container  text-center">
-            <?php echo $mavar ?>
+      
+          
         </div> 
             
         <br>
@@ -25,7 +31,7 @@
             <button class="btn btn-default ">Créer un nouveau chapitre</button>
         </form>
     </div>
-</div>
+</div> --}}
 
 @stop
 

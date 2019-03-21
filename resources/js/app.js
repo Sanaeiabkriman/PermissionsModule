@@ -7,25 +7,12 @@
 
 require('./bootstrap');
 require('./main');
-
-var Vue = require('vue');
+require('../../Modules/Matiere/Resources/assets/js/app')
  
-new Vue({
- el: '#app'
-});
+// require('../../Modules/Matiere/Resources/assets/js/vueapp')
 
 window.Vue = require('vue');
 
-new Vue({
-    el: '#v-for-object',
-    data: {
-      object: {
-        firstName: 'John',
-        lastName: 'Doe',
-        age: 30
-      }
-    }
-  })
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -45,9 +32,7 @@ new Vue({
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app'
-});
+
 
 
 

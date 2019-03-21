@@ -8,6 +8,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+     
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="{{ asset('./css/app.css') }}">
         <!-- Font Awesome -->
@@ -66,7 +67,8 @@
 @endif
 
 @yield('adminlte_js')
-<script src="../../js/app.js"></script>
+<script type="text/javascript" src="../../js/app.js"></script>
+
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>

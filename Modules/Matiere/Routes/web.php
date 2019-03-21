@@ -11,17 +11,17 @@
 |
 */
 
-Route::prefix('chapitre')->group(function() {
-    Route::get('/admin', 'ChapitreController@index');  
-    Route::get('/show','ChapitreController@show');
-    Route::get('/create','ChapitreController@create');
-    Route::post('/store','ChapitreController@store');
-    Route::get('/search/{id}','ChapitreController@search');
-    Route::post('delete/{id}','ChapitreController@destroy');
-    Route::get('edit/{id}','ChapitreController@edit');
-    Route::post('update/{id}','ChapitreController@update');
-    Route::get('cours/{id}', 'ChapitreController@cours');
-});
+// Route::prefix('chapitre')->group(function() {
+//     Route::get('/admin', 'ChapitreController@index');  
+//     Route::get('/show','ChapitreController@show');
+//     Route::get('/create','ChapitreController@create');
+//     Route::post('/store','ChapitreController@store');
+//     Route::get('/search/{id}','ChapitreController@search');
+//     Route::post('delete/{id}','ChapitreController@destroy');
+//     Route::get('edit/{id}','ChapitreController@edit');
+//     Route::post('update/{id}','ChapitreController@update');
+//     Route::get('cours/{id}', 'ChapitreController@cours');
+// });
 
 Route::prefix('coding')->group(function() {
     Route::get('/admin', 'CodingController@index');  
@@ -33,3 +33,16 @@ Route::prefix('coding')->group(function() {
     Route::get('edit/{id}','CodingController@edit');
     Route::post('update/{id}','CodingController@update');
 });
+
+Route::get('/{any}', function(){
+    return view('matiere::chapitres.index');
+})->where('any', '.*');
+
+
+// Route::post('/chapitre/create', 'ChapitreController@store');
+// Route::get('/chapitre/edit/{id}', 'ChapitreController@edit');
+// Route::post('/chapitre/update/{id}', 'ChapitreController@update');
+// Route::delete('/chapitre/delete/{id}', 'ChapitreController@delete');
+// Route::get('chapitres', 'ChapitreController@index');
+
+Route::resource('chapitres', 'ChapitreController');

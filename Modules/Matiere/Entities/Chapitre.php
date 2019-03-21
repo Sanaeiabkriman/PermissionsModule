@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chapitre extends Model
 {
-    protected $fillable = [];
+    protected $fillable = ['nom','description','parent','enfant','image','competences','prerequis'];
 
     public function ChapParent($id){
         return $this->where($this->parent,$id);

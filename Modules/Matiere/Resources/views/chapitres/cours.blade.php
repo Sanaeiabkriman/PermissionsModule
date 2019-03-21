@@ -4,6 +4,7 @@
 
 @section('content_header')
 
+
 <section class="container">
     <div class="bg-purple color-palette container">
         <h3 class="text-center">{{$cours->nom}}</h3>

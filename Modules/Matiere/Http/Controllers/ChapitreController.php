@@ -18,10 +18,14 @@ class ChapitreController extends Controller
      */
     public function index()
     {
-       // $chapitres=Chapitre::all();
-        $mavar=$this->recurcive();
-        // $mavar = $this->r;
-        return view('matiere::chapitres.index', compact('mavar'));  
+    //    // $chapitres=Chapitre::all();
+    //     $mavar=$this->recurcive();
+    //     // $mavar = $this->r;
+    //     return view('matiere::chapitres.index', compact('mavar'));  
+    $chapitres = Chapitre::all();
+    dd($chapitres);
+    return response()->json($chapitres);
+
     }
 
     function recurcive($id = NULL){
@@ -63,31 +67,59 @@ class ChapitreController extends Controller
      */
     public function store(Request $request)
     {
+
         $img=$request->file('image');
         $renom=time().$img->hashName();
         $img->store('/public/images/original');
         $resized=ImageIntervention::make($img)->resize(90,90);
         $resized->save();
         Storage::put('/public/images/thumbnails/'.$renom, $resized);
-        $chapitre=new Chapitre;
-        $chapitre->nom=$request->nom;
-        $chapitre->parent=$request->parent;
-        if($request->parent == "NULL")
-        $chapitre->parent=NULL;
-       
-        // $article->textepreview= str_limit($request->texte,200);
-        $chapitre->description =$request->description;
-        $chapitre->competences =$request->competences;
-        $chapitre->prerequis =$request->prerequis;
-        $chapitre->image=$renom;
-        $chapitre->enfant=null;
+
+        $chapitre = new Chapitre([
+            'nom' => $request->nom,
+            'parent' => $request->parent,
+            'description' => $request->description,
+            'competences' => $request->competences,
+            'prerequis' => $request->prerequis,
+            'image' => $renom,
+            'enfant' => NULL,
+            'type' => (1),
+            ]);
+            if($request->parent == "NULL")
+            $chapitre->parent=NULL;
+            foreach($request->type as $item){
+                    $typearticle=Type::find($item);
+                    $chapitre->type()->attach($typearticle);
+                    $chapitre->save();
+                }
         $chapitre->save();
-        foreach($request->type as $item){
-            $typearticle=Type::find($item);
-            $chapitre->type()->attach($typearticle);
-            $chapitre->save();
-        }
-        return redirect("chapitre/admin");
+        return $chapitre;
+        
+        
+        //   foreach($request->type as $item){
+        //     $typearticle=Type::find($item);
+        //     $chapitre->type()->attach($typearticle);
+        //     $chapitre->save();
+        // }
+        // $chapitre=new Chapitre;
+        // $chapitre->nom=$request->nom;
+        // $chapitre->parent=$request->parent;
+        
+        
+        // // $article->textepreview= str_limit($request->texte,200);
+        // $chapitre->description =$request->description;
+        // $chapitre->competences =$request->competences;
+        // $chapitre->prerequis =$request->prerequis;
+        // $chapitre->image=$renom;
+        // $chapitre->enfant=null;
+        // $chapitre->save();
+        // foreach($request->type as $item){
+        //     $typearticle=Type::find($item);
+        //     $chapitre->type()->attach($typearticle);
+        //     $chapitre->save();
+        // }
+        // // return redirect("chapitre/admin");
+        // return response()->json('Successfully added');
     }
 
     /**
@@ -96,10 +128,10 @@ class ChapitreController extends Controller
      */
     public function show()
     {
-        $mavar=Chapitre::paginate(6);
+        $mavar=Chapitre::all();
         $type=Type::all();
         // $mavar=$this->recurcive();
-        return view('matiere::chapitres.show', compact('mavar','type'));
+        return response()->json($mavar);
     }
 
     /**
@@ -111,7 +143,7 @@ class ChapitreController extends Controller
         $chapitre=chapitre::find($id);
         $chaps=chapitre::all();
         $type=Type::all();
-        return view('matiere::chapitres.edit',  compact('chapitre','type', 'chaps'));
+        return response()->json($chapitre,$chaps,$type);
     }
 
     /**
@@ -146,7 +178,9 @@ class ChapitreController extends Controller
         $chapitre->save();
         $chapitre->type()->sync($request->type);
         $chapitre->save();
-        return redirect('chapitre/show');
+        // return redirect('chapitre/show');
+        return response()->json('Successfully Updated');
+        
     }
 
     /**
@@ -159,7 +193,9 @@ class ChapitreController extends Controller
         Storage::delete($del->image);
         $del->type()->detach();
         $del->delete();
-        return redirect('chapitre/show');
+        // return redirect('chapitre/show');
+        return response()->json('Successfully Deleted');
+
     }
 
     public function search($id)
