@@ -21,12 +21,12 @@ const routes = [
   },
   {
     name: "create",
-    path: "/chapitre/create",
+    path: "/chapitres/create",
     component: Create
   },
   {
     name: "edit",
-    path: '/edit/:id',
+    path: "/edit/:id",
     component: Edit
   },
 ];

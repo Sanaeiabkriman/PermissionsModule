@@ -15,6 +15,7 @@
                 <td>ID</td>
                 <td>chapitre Name</td>
                 <td>chapitre Price</td>
+                <td>chapitre Type</td>
                 <td>Actions</td>
             </tr>
             </thead>
@@ -49,9 +50,8 @@
         methods: {
             fetchChapitres()
             {
-              let uri = '/chapitres';
-              this.axios.get(uri).then((response) => {
-                 
+              let uri = '/chapitres/fetch';
+              this.axios.get(uri).then(response => {               
                   this.chapitres = response.data;
               });
             },

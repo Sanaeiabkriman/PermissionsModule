@@ -34,15 +34,18 @@ Route::prefix('coding')->group(function() {
     Route::post('update/{id}','CodingController@update');
 });
 
-Route::get('/{any}', function(){
-    return view('matiere::chapitres.index');
-})->where('any', '.*');
 
 
-// Route::post('/chapitre/create', 'ChapitreController@store');
-// Route::get('/chapitre/edit/{id}', 'ChapitreController@edit');
-// Route::post('/chapitre/update/{id}', 'ChapitreController@update');
-// Route::delete('/chapitre/delete/{id}', 'ChapitreController@delete');
+// Route::post('/chapitres/create', 'ChapitreController@store');
+// Route::get('/chapitres/edit/{id}', 'ChapitreController@edit');
+// Route::post('/chapitres/update/{id}', 'ChapitreController@update');
+// Route::delete('/chapitres/delete/{id}', 'ChapitreController@delete');
 // Route::get('chapitres', 'ChapitreController@index');
 
-Route::resource('chapitres', 'ChapitreController');
+Route::get('chapitres/fetch', 'ChapitreController@fetch');
+Route::get('chapitres/fetchtype', 'ChapitreController@fetchtype');
+Route::post('/chapitres/create', 'ChapitreController@store');
+
+Route::get('/chapitres/{any}', function(){
+    return view('matiere::chapitres.index');
+})->where('any', '.*');

@@ -18,14 +18,21 @@ class ChapitreController extends Controller
      */
     public function index()
     {
-    //    // $chapitres=Chapitre::all();
+        $chapitres=Chapitre::all();
     //     $mavar=$this->recurcive();
     //     // $mavar = $this->r;
-    //     return view('matiere::chapitres.index', compact('mavar'));  
-    $chapitres = Chapitre::all();
-    dd($chapitres);
-    return response()->json($chapitres);
+        return view('matiere::chapitres.index', compact('chapitres'));  
+  
 
+    }
+
+    public function fetch(){
+        $chapitres = Chapitre::all();
+        return response()->json($chapitres);
+    }
+    public function fetchtype(){
+        $types = Type::all();
+        return response()->json($types);
     }
 
     function recurcive($id = NULL){
@@ -68,32 +75,33 @@ class ChapitreController extends Controller
     public function store(Request $request)
     {
 
-        $img=$request->file('image');
-        $renom=time().$img->hashName();
-        $img->store('/public/images/original');
-        $resized=ImageIntervention::make($img)->resize(90,90);
-        $resized->save();
-        Storage::put('/public/images/thumbnails/'.$renom, $resized);
+        // $img=$request->file('image');
+        // $renom=time().$img->hashName();
+        // $img->store('/public/images/original');
+        // $resized=ImageIntervention::make($img)->resize(90,90);
+        // $resized->save();
+        // Storage::put('/public/images/thumbnails/'.$renom, $resized);
 
         $chapitre = new Chapitre([
             'nom' => $request->nom,
-            'parent' => $request->parent,
-            'description' => $request->description,
-            'competences' => $request->competences,
-            'prerequis' => $request->prerequis,
-            'image' => $renom,
+            'parent' => NULL,
+            'description' => $request->get('description'),
+            'competences' => $request->get('competences'),
+            'prerequis' => $request->get('prerequis'),
+            'image' => 'nomdébile',
             'enfant' => NULL,
-            'type' => (1),
+            
             ]);
             if($request->parent == "NULL")
             $chapitre->parent=NULL;
-            foreach($request->type as $item){
-                    $typearticle=Type::find($item);
-                    $chapitre->type()->attach($typearticle);
-                    $chapitre->save();
-                }
+            // foreach($request->type as $item){
+            //     $typearticle=Type::find($item);
+            //     $chapitre->type()->attach($typearticle);
+            //     $chapitre->save();
+            // }
+            // $chapitre->type()->sync((array)$request->input('type'));
         $chapitre->save();
-        return $chapitre;
+        return response()->json('success');
         
         
         //   foreach($request->type as $item){
