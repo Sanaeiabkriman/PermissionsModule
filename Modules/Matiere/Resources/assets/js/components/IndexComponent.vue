@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <h1>chapitres</h1>
 
         <div class="row">

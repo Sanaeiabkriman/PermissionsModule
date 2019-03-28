@@ -36681,6 +36681,7 @@ var routes = [{
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({ mode: 'history', routes: routes });
 new __WEBPACK_IMPORTED_MODULE_0_vue___default.a(__WEBPACK_IMPORTED_MODULE_0_vue___default.a.util.extend({ router: router }, __WEBPACK_IMPORTED_MODULE_4__components_app_vue___default.a)).$mount('#app');
+new __WEBPACK_IMPORTED_MODULE_0_vue___default.a(__WEBPACK_IMPORTED_MODULE_0_vue___default.a.util.extend({ router: router }, __WEBPACK_IMPORTED_MODULE_6__components_IndexComponent_vue___default.a)).$mount('#index');
 
 /***/ }),
 /* 40 */
@@ -52092,25 +52093,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
+
         return {
             chapitre: {},
             chapitres: [],
             types: [],
-            err: ""
-
+            err: "",
+            image: ''
         };
     },
 
     methods: {
+        onFileChange: function onFileChange(e) {
+            this.image = e.target.files[0];
+        },
         addChapitre: function addChapitre() {
             var _this = this;
 
-            var uri = '/chapitres/create';
-            this.axios.post(uri, this.chapitre).then(function (response) {
-                _this.$router.push({
+            var app = this;
+            var formData = new FormData();
+            formData.append('image', this.image);
+            formData.append('nom', this.chapitre.nom);
+            formData.append('parent', this.chapitre.parent);
+            formData.append('competences', this.chapitre.competences);
+            formData.append('description', this.chapitre.description);
+            formData.append('prerequis', this.chapitre.prerequis);
+            axios.post('/chapitres/create', formData).then(function (response) {
+                app.$router.push({
                     name: 'index'
                 });
             }).catch(function (error) {
@@ -52147,6 +52161,7 @@ var render = function() {
     _c(
       "form",
       {
+        attrs: { enctype: "multipart/form-data" },
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -52268,19 +52283,59 @@ var render = function() {
             _c("div", { staticClass: "form-group" }, [
               _c(
                 "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.chapitre.parent,
+                      expression: "chapitre.parent"
+                    }
+                  ],
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.chapitre,
+                        "parent",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
                 [
                   _c("option", { attrs: { value: "NULL" } }),
                   _vm._v(" "),
                   _vm._l(_vm.chapitres, function(chapitre) {
-                    return _c(
-                      "option",
-                      { key: chapitre.id, attrs: { value: "" } },
-                      [_vm._v(_vm._s(chapitre.nom))]
-                    )
+                    return _c("option", { key: chapitre.id }, [
+                      _vm._v(_vm._s(chapitre.nom))
+                    ])
                   })
                 ],
                 2
               )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-9" }, [
+                  _c("input", {
+                    ref: "file",
+                    staticClass: "form-control",
+                    attrs: { type: "file", id: "file", name: "image" },
+                    on: { change: _vm.onFileChange }
+                  })
+                ])
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -52460,7 +52515,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "container" }, [
     _c("h1", [_vm._v("chapitres")]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [

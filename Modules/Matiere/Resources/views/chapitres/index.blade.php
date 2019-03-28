@@ -2,10 +2,10 @@
 @section('title', 'AdminLTE')
 @section('content_header')
 
-
-<div id="app">
+<h1>index</h1>
+<div id="index">
     <div class="container">
-        <App></App>
+        <IndexComponent></IndexComponent>
     </div>
 </div>
 {{-- 

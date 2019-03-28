@@ -74,7 +74,6 @@ class ChapitreController extends Controller
      */
     public function store(Request $request)
     {
-
         // $img=$request->file('image');
         // $renom=time().$img->hashName();
         // $img->store('/public/images/original');
@@ -84,13 +83,12 @@ class ChapitreController extends Controller
 
         $chapitre = new Chapitre([
             'nom' => $request->nom,
-            'parent' => NULL,
-            'description' => $request->get('description'),
-            'competences' => $request->get('competences'),
-            'prerequis' => $request->get('prerequis'),
-            'image' => 'nomdébile',
+            'parent' => $request->parent,
+            'description' => $request->description,
+            'competences' => $request->competences,
+            'prerequis' => $request->prerequis,
+            'image' =>$request->image,
             'enfant' => NULL,
-            
             ]);
             if($request->parent == "NULL")
             $chapitre->parent=NULL;
@@ -99,7 +97,6 @@ class ChapitreController extends Controller
             //     $chapitre->type()->attach($typearticle);
             //     $chapitre->save();
             // }
-            // $chapitre->type()->sync((array)$request->input('type'));
         $chapitre->save();
         return response()->json('success');
         

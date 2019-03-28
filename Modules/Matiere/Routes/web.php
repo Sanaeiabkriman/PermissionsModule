@@ -45,7 +45,7 @@ Route::prefix('coding')->group(function() {
 Route::get('chapitres/fetch', 'ChapitreController@fetch');
 Route::get('chapitres/fetchtype', 'ChapitreController@fetchtype');
 Route::post('/chapitres/create', 'ChapitreController@store');
-
+Route::get('/chapitres/index','ChapitreController@index');
 Route::get('/chapitres/{any}', function(){
     return view('matiere::chapitres.index');
 })->where('any', '.*');

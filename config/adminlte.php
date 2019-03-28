@@ -186,7 +186,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Chapitres',
-                    'url'  => "chapitre/admin",
+                    'url'  => "/chapitres/index",
                 ],
                 // [
                 //     'text' => 'Etats',
