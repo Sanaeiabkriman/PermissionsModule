@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 @section('title', 'AdminLTE')
 @section('content_header')
-
-<h1>index</h1>
-<div id="index">
+<div id="app">
     <div class="container">
-        <IndexComponent></IndexComponent>
+        <App> </App>
     </div>
 </div>
+
+
 {{-- 
 <div id="accordion">
     <div class="card p-3">
@@ -25,4 +25,3 @@
 </div> --}}
 
 @stop
-

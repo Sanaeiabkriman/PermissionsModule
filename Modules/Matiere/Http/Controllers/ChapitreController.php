@@ -21,9 +21,7 @@ class ChapitreController extends Controller
         $chapitres=Chapitre::all();
     //     $mavar=$this->recurcive();
     //     // $mavar = $this->r;
-        return view('matiere::chapitres.index', compact('chapitres'));  
-  
-
+        return view('matiere::chapitres.index', compact('chapitres'));
     }
 
     public function fetch(){
@@ -59,12 +57,12 @@ class ChapitreController extends Controller
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create()
-    {
-        $chapitre=chapitre::all();
-        $type=Type::all();
-        return view('matiere::chapitres.create',  compact('chapitre','type'));
-    }
+    // public function create()
+    // {
+    //     $chapitre=chapitre::all();
+    //     $type=Type::all();
+    //     return view('matiere::chapitres.create',  compact('chapitre','type'));
+    // }
     
     /**
      * 
@@ -74,12 +72,12 @@ class ChapitreController extends Controller
      */
     public function store(Request $request)
     {
-        // $img=$request->file('image');
-        // $renom=time().$img->hashName();
-        // $img->store('/public/images/original');
-        // $resized=ImageIntervention::make($img)->resize(90,90);
-        // $resized->save();
-        // Storage::put('/public/images/thumbnails/'.$renom, $resized);
+        $img=$request->file('image');
+        $renom=time().$img->hashName();
+        $img->store('/public/images/original');
+        $resized=ImageIntervention::make($img)->resize(90,90);
+        $resized->save();
+        Storage::put('/public/images/thumbnails/'.$renom, $resized);
 
         $chapitre = new Chapitre([
             'nom' => $request->nom,
@@ -87,16 +85,12 @@ class ChapitreController extends Controller
             'description' => $request->description,
             'competences' => $request->competences,
             'prerequis' => $request->prerequis,
-            'image' =>$request->image,
+            'image' =>$renom,
             'enfant' => NULL,
             ]);
             if($request->parent == "NULL")
             $chapitre->parent=NULL;
-            // foreach($request->type as $item){
-            //     $typearticle=Type::find($item);
-            //     $chapitre->type()->attach($typearticle);
-            //     $chapitre->save();
-            // }
+           
         $chapitre->save();
         return response()->json('success');
         
@@ -143,14 +137,20 @@ class ChapitreController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
+    public function fetchedit($id)
+    {
+        $chapitre=Chapitre::find($id);
+        return response()->json($chapitre);
+    }
     public function edit($id)
     {
-        $chapitre=chapitre::find($id);
-        $chaps=chapitre::all();
-        $type=Type::all();
-        return response()->json($chapitre,$chaps,$type);
-    }
+        $chapitre=Chapitre::find($id);
+        $chapitres=chapitre::all();
+        $types=Type::all();
+        return view('matiere::chapitres.edit',  compact('chapitres','types','chapitre'));
+        // return response()->json($chapitre);
 
+    }
     /**
      * Update the specified resource in storage.
      * @param  Request $request
@@ -158,33 +158,10 @@ class ChapitreController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $chapitre=Chapitre::find($id);
-        if ($request->image== null){   
-        }else{      
-            Storage::delete('public/images/original/'.$chapitre->image);
-            Storage::delete('public/images/thumbnails/'.$chapitre->image);
-            $img=$request->image;
-            $renom=time().$img->hashName();
-            $img->store('/public/images/original/');
-            $resized=ImageIntervention::make($img)->resize(125,125);
-            $resized->save();
-            Storage::put('/public/images/thumbnails/'.$renom, $resized);
-            $chapitre->image=$renom;
-        }
-        $chapitre->nom=$request->nom;
-        $chapitre->parent=$request->parent;
-        if($request->parent == "NULL")
-        $chapitre->parent=NULL;
-        $chapitre->description =$request->description;
-        $chapitre->competences =$request->competences;
-        $chapitre->prerequis =$request->prerequis;
-        $chapitre->image=$renom;
-        $chapitre->enfant=null;
-        $chapitre->save();
-        $chapitre->type()->sync($request->type);
-        $chapitre->save();
-        // return redirect('chapitre/show');
-        return response()->json('Successfully Updated');
+        $chapitre->update($request->all());
+        return response()->json('successfully updated');
         
     }
 
@@ -195,7 +172,7 @@ class ChapitreController extends Controller
     public function destroy($id)
     {
         $del=chapitre::find($id);
-        Storage::delete($del->image);
+        // Storage::delete($del->image);
         $del->type()->detach();
         $del->delete();
         // return redirect('chapitre/show');

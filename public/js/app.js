@@ -36670,18 +36670,17 @@ var routes = [{
   path: "/chapitres",
   component: __WEBPACK_IMPORTED_MODULE_6__components_IndexComponent_vue___default.a
 }, {
-  name: "create",
-  path: "/chapitres/create",
+  name: "createform",
+  path: "/chapitres/createform",
   component: __WEBPACK_IMPORTED_MODULE_5__components_CreateComponent_vue___default.a
 }, {
   name: "edit",
-  path: "/edit/:id",
+  path: "/chapitres/edit/:id",
   component: __WEBPACK_IMPORTED_MODULE_7__components_EditComponent_vue___default.a
 }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({ mode: 'history', routes: routes });
 new __WEBPACK_IMPORTED_MODULE_0_vue___default.a(__WEBPACK_IMPORTED_MODULE_0_vue___default.a.util.extend({ router: router }, __WEBPACK_IMPORTED_MODULE_4__components_app_vue___default.a)).$mount('#app');
-new __WEBPACK_IMPORTED_MODULE_0_vue___default.a(__WEBPACK_IMPORTED_MODULE_0_vue___default.a.util.extend({ router: router }, __WEBPACK_IMPORTED_MODULE_6__components_IndexComponent_vue___default.a)).$mount('#index');
 
 /***/ }),
 /* 40 */
@@ -52095,6 +52094,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52107,6 +52114,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             image: ''
         };
     },
+
 
     methods: {
         onFileChange: function onFileChange(e) {
@@ -52123,6 +52131,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('competences', this.chapitre.competences);
             formData.append('description', this.chapitre.description);
             formData.append('prerequis', this.chapitre.prerequis);
+
             axios.post('/chapitres/create', formData).then(function (response) {
                 app.$router.push({
                     name: 'index'
@@ -52135,6 +52144,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         }
     },
+
     mounted: function mounted() {
         var _this2 = this;
 
@@ -52157,6 +52167,26 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("h1", [_vm._v("Create A chapitre")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-10" }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-2" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { to: { name: "index" } }
+            },
+            [_vm._v("Retour")]
+          )
+        ],
+        1
+      )
+    ]),
     _vm._v(" "),
     _c(
       "form",
@@ -52476,35 +52506,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            chapitres: []
-        };
+  data: function data() {
+    return {
+      chapitres: []
+    };
+  },
+
+
+  created: function created() {
+    this.fetchChapitres();
+  },
+
+  methods: {
+    fetchChapitres: function fetchChapitres() {
+      var _this = this;
+
+      this.axios.get("/chapitres/fetch").then(function (response) {
+        _this.chapitres = response.data;
+      });
     },
+    deletechapitre: function deletechapitre(id) {
+      var _this2 = this;
 
+      var uri = "/chapitres/delete/" + id;
 
-    created: function created() {
-        this.fetchChapitres();
-    },
-
-    methods: {
-        fetchChapitres: function fetchChapitres() {
-            var _this = this;
-
-            var uri = '/chapitres/fetch';
-            this.axios.get(uri).then(function (response) {
-                _this.chapitres = response.data;
-            });
-        },
-        deletechapitre: function deletechapitre(id) {
-            var uri = '/chapitres/' + id;
-            this.chapitres.splice(id, 1);
-            this.axios.delete(uri);
-        }
+      this.axios.post(uri).then(function (response) {
+        _this2.chapitres.splice(_this2.chapitres.indexOf(id));
+        _this2.$router.push({
+          name: "index"
+        });
+      });
     }
+  }
 });
 
 /***/ }),
@@ -52529,7 +52570,7 @@ var render = function() {
             "router-link",
             {
               staticClass: "btn btn-primary",
-              attrs: { to: { name: "create" } }
+              attrs: { to: { name: "createform" } }
             },
             [_vm._v("Create chapitre")]
           )
@@ -52537,7 +52578,6 @@ var render = function() {
         1
       )
     ]),
-    _c("br"),
     _vm._v(" "),
     _c("table", { staticClass: "table table-hover" }, [
       _vm._m(0),
@@ -52697,37 +52737,106 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            chapitre: {}
+            chapitre: {
+                nom: "",
+                description: "",
+                prerequis: ""
+
+            },
+            chapitres: [],
+            types: [],
+            err: "",
+            image: ''
         };
     },
 
 
-    created: function created() {
-        this.getChapitre();
-    },
-
     methods: {
-        getChapitre: function getChapitre() {
-            var _this = this;
-
-            var uri = '/chapitres/' + this.$route.params.id + '/edit';
-            this.axios.get(uri).then(function (response) {
-                _this.chapitre = response.data;
-            });
+        onFileChange: function onFileChange(e) {
+            this.image = e.target.files[0];
         },
         updateChapitre: function updateChapitre() {
-            var _this2 = this;
+            var _this = this;
 
-            var uri = '/chapitres/' + this.$route.params.id;
-            this.axios.patch(uri, this.chapitre).then(function (response) {
-                _this2.$router.push({ name: 'index' });
+            var upapp = this;
+            axios.post('/chapitres/update/' + this.$route.params.id, this.chapitre).then(function (response) {
+                upapp.$router.push({
+                    name: 'index'
+                });
+            }).catch(function (error) {
+                if (error.response.status) {
+                    _this.err = error.response.data.errors;
+                }
+                console.log(_this.err);
             });
         }
+    },
+
+    created: function created() {
+        var _this2 = this;
+
+        axios.get('/chapitres/fetchedit/' + this.$route.params.id).then(function (response, data) {
+            _this2.chapitre = response.data;
+        });
+    },
+    mounted: function mounted() {
+        var _this3 = this;
+
+        axios.get('/chapitres/fetchtype').then(function (response, data) {
+            _this3.types = response.dat;
+        });
+        axios.get('/chapitres/fetch').then(function (response, data) {
+            _this3.chapitres = response.data;
+        });
+
+        axios.get('/chapitres/fetchedit/' + this.$route.params.id).then(function (response, data) {
+            _this3.chapitre = response.data;
+        });
     }
 });
 
@@ -52765,67 +52874,214 @@ var render = function() {
     _c(
       "form",
       {
+        attrs: { enctype: "multipart/form-data" },
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.update($event)
+            return _vm.updateChapitre($event)
           }
         }
       },
       [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v("chapitre Name")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.chapitre.nom,
-                expression: "chapitre.nom"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text" },
-            domProps: { value: _vm.chapitre.nom },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Chapitre nom")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.chapitre.nom,
+                    expression: "chapitre.nom"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.chapitre.nom },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.chapitre, "nom", $event.target.value)
+                  }
                 }
-                _vm.$set(_vm.chapitre, "nom", $event.target.value)
-              }
-            }
-          })
+              })
+            ])
+          ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { name: "description" } }, [
-            _vm._v("chapitre Price")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.chapitres.description,
-                expression: "chapitres.description"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text" },
-            domProps: { value: _vm.chapitres.description },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { name: "description" } }, [
+                _vm._v(" Description ")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.chapitre.description,
+                    expression: "chapitre.description"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.chapitre.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.chapitre, "description", $event.target.value)
+                  }
                 }
-                _vm.$set(_vm.chapitres, "description", $event.target.value)
-              }
-            }
-          })
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { name: "competences" } }, [
+                _vm._v(" Compétences")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.chapitre.competences,
+                    expression: "chapitre.competences"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.chapitre.competences },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.chapitre, "competences", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { name: "prerequis" } }, [
+                _vm._v("Prérequis")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.chapitre.prerequis,
+                    expression: "chapitre.prerequis"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.chapitre.prerequis },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.chapitre, "prerequis", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.chapitre.parent,
+                      expression: "chapitre.parent"
+                    }
+                  ],
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.chapitre,
+                        "parent",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "NULL" } }, [
+                    _vm._v("Aucun ")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.chapitres, function(chapitre) {
+                    return _c("option", { key: chapitre.id }, [
+                      _vm._v(_vm._s(chapitre.nom))
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-7" }, [
+                _c("input", {
+                  ref: "file",
+                  staticClass: "bg-white p-3",
+                  attrs: { type: "file", id: "file", name: "image" },
+                  on: { change: _vm.onFileChange }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group mt-3" }, [
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c(
+                  "div",
+                  { staticClass: "input-group" },
+                  _vm._l(_vm.types, function(type) {
+                    return _c(
+                      "span",
+                      { key: type.id, staticClass: "input-group-addon" },
+                      [
+                        _c("input", { attrs: { type: "checkbox" } }),
+                        _vm._v(
+                          _vm._s(type.nom) + "\n                            "
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              ])
+            ])
+          ])
         ]),
+        _vm._v(" "),
+        _c("br"),
         _vm._v(" "),
         _vm._m(0)
       ]
@@ -52837,7 +53093,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
+    return _c("div", { staticClass: "form-group m-5" }, [
       _c("button", { staticClass: "btn btn-primary" }, [_vm._v("Update")])
     ])
   }

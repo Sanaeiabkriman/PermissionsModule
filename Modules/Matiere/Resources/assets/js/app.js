@@ -20,18 +20,16 @@ const routes = [
     component: Index
   },
   {
-    name: "create",
-    path: "/chapitres/create",
+    name: "createform",
+    path: "/chapitres/createform",
     component: Create
   },
   {
     name: "edit",
-    path: "/edit/:id",
+    path: "/chapitres/edit/:id",
     component: Edit
   },
 ];
 
-
 const router = new VueRouter({ mode: 'history', routes: routes});
 new Vue(Vue.util.extend({ router }, App)).$mount('#app');
-new Vue(Vue.util.extend({ router }, Index)).$mount('#index');
