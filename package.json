@@ -21,6 +21,7 @@
         "vue-template-compiler": "^2.6.8"
     },
     "dependencies": {
+        "@johmun/vue-tags-input": "^2.0.1",
         "ajv": "^6.10.0",
         "bootstrap-datepicker": "^1.8.0",
         "datepicker": "0.0.0",
